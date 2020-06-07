@@ -1,13 +1,18 @@
-[19:27:34][game_application.cpp:254]: Game Version: Stellaris v1.1.0
-[19:27:34][defines.cpp:113]: 875 defines loaded
-[19:28:29][consolecmdimpl.cpp:2097]: 
+[19:33:36][game_application.cpp:254]: Game Version: Stellaris v1.2.5.24012
+[19:33:36][defines.cpp:113]: 934 defines loaded
+[19:34:26][consolecmdimpl.cpp:2084]: 
 == TRIGGER DOCUMENTATION ==
-text - shows custom text
+text - For 'desc={trigger={' use. Shows custom text
+text = <text>
 Supported Scopes: ???
 
 Supported targets:
 
-custom_tooltip - shows a custom tooltip for the effects within
+custom_tooltip - Replaces the tooltips for the enclosed triggers with a custom text
+custom_tooltip = {
+	text = <text>
+	<trigger>
+}
 Supported Scopes: ???
 
 Supported targets:
@@ -42,42 +47,50 @@ Supported Scopes: planet
 
 Supported targets: none
 
-hidden_trigger - hides the tooltip for the effects within
+hidden_trigger - Hides the tooltip for the triggers within
+hidden_trigger = { trigger }
 Supported Scopes: ???
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
-has_owner - checks if a planet is colonized
+has_owner - Checks if the planet/system is colonized
+has_owner = yes
 Supported Scopes: planet
 
 Supported targets: none
 
-any_owned_planet - switches Scope to and goes through each owned planet
+any_owned_planet - Checks if any of the empire's owned planets meet the specified criteria
+any_owned_planet = { triggers }
 Supported Scopes: country
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
-any_controlled_planet - switches scope to and goes through each controlled planets
+any_controlled_planet - Checks if any of the empire's controlled planets meet the specified criteria
+any_owned_planet = { triggers }
 Supported Scopes: country
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
-is_ai - checks if a country is AI controlled
+is_ai - checks if a empire is played by the AI
+is_ai = no
 Supported Scopes: country
 
 Supported targets:
 
-always - either always false or true
+always - Trigger is either always false or true
+always = yes
 Supported Scopes: ???
 
 Supported targets:
 
-has_trait - checks if an empire's dominant species, pop, or leader has a certain Trait
+has_trait - Checks if an empire's dominant species, a pop, or a leader has a certain Trait
+has_trait = leader_trait_carefree
 Supported Scopes: country pop
 
 Supported targets:
 
-has_ethic - checks if an empire's dominant species has a certain Ethic
+has_ethic - Checks if an empire's dominant species has a certain Ethic
+has_ethic = ethic_fanatic_pacifist
 Supported Scopes: country pop
 
 Supported targets:
@@ -92,12 +105,14 @@ Supported Scopes: country
 
 Supported targets: ???
 
-any_pop - switches scope to and goes through each pop unit on the planet or all pops of the scope species
+any_pop - Checks if any of the planet's or species' pops meet the specified criteria
+any_pop = { <trigger> }
 Supported Scopes: planet
 
 Supported targets: none THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
-is_owned_by - checks if a planet or galactic object is owned by target empire
+is_owned_by - Checks if the planet/system/army is owned by a specific empire
+is_owned_by = target
 Supported Scopes: planet
 
 Supported targets: none THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
@@ -107,12 +122,20 @@ Supported Scopes: country pop
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
-any_war_defender - switches scope to and goes through each defender in the war against a specified enemy
+any_war_defender - Checks if any defending empire in the current empire's war meets the specified criteria
+any_war_defender = {
+	enemy = <target>
+	<trigger>
+}
 Supported Scopes: country
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
-any_war_attacker - switches scope to and goes through each attacker in the war against a specified enemy
+any_war_attacker - Checks if any attacking empire in the current empire's war meets the specified criteria
+any_war_defender = {
+	enemy = <target>
+	<trigger>
+}
 Supported Scopes: country
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
@@ -122,22 +145,26 @@ Supported Scopes: country
 
 Supported targets:
 
-is_same_empire - checks if an empire is the same as another
+is_same_empire - Checks if the empire is the same as another, target empire
+is_same_empire = <target>
 Supported Scopes: country
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
-is_planet_class - checks if a planet is of a certain class
+is_planet_class - Checks if the planet is of a certain class
+is_planet_class = pc_tundra
 Supported Scopes: planet
 
 Supported targets: none THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
-has_strategic_resource - checks if a planet has a specific strategic resource
+has_strategic_resource - Checks if the planet has any strategic resource
+has_strategic_resource = yes
 Supported Scopes: planet
 
 Supported targets: none THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
-is_star_class - checks if a planet star is of a certain class
+is_star_class - Checks if the star/system is of a certain class
+is_star_class = sc_black_hole
 Supported Scopes: planet
 
 Supported targets: none THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
@@ -147,7 +174,8 @@ Supported Scopes: planet ship pop fleet
 
 Supported targets: none
 
-has_technology - checks if a country has a technology of atleast a specific level
+has_technology - Checks if the empire has a technology (of at least a specific level)
+has_technology = tech_spaceport_4
 Supported Scopes: country
 
 Supported targets:
@@ -157,32 +185,38 @@ Supported Scopes: planet
 
 Supported targets: none
 
-has_planet_flag - checks if a planet has a specified flag
+has_planet_flag - Checks if the planet has a specific flag
+has_planet_flag = <flag>
 Supported Scopes: planet
 
 Supported targets: none
 
-has_country_flag - checks if a country has a specified flag
+has_country_flag - Checks if the empire has a specific flag
+has_country_flag = <flag>
 Supported Scopes: country
 
 Supported targets:
 
-has_fleet_flag - Checks if a fleet has a specified flag
+has_fleet_flag - Checks if the fleet has a specific flag
+has_fleet_flag = <flag>
 Supported Scopes: fleet
 
 Supported targets:
 
-has_ship_flag - checks if a planet has a specified flag
+has_ship_flag - Checks if the ship has a specific flag
+has_ship_flag = <flag>
 Supported Scopes: ship
 
 Supported targets:
 
-is_ship_class - checks if a ship is a specified class
+is_ship_class - Checks if the ship/fleet is a specified class
+is_ship_class = shipclass_colonizer
 Supported Scopes: ship fleet
 
 Supported targets:
 
-is_ship_size - checks if a ship is a specified size
+is_ship_size - Checks if the ship/fleet uses a specified ship size
+is_ship_size = mining_station
 Supported Scopes: ship fleet
 
 Supported targets:
@@ -247,7 +281,8 @@ Supported Scopes: planet
 
 Supported targets: ??? none
 
-any_planet - any planet in a solar system
+any_planet - Checks if any planet in the system/sector meets the specified criteria
+any_planet = { <trigger> }
 Supported Scopes:
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
@@ -267,7 +302,13 @@ Supported Scopes: planet
 
 Supported targets: none
 
-is_at_war_with - checks if an empire is at war with another empire
+is_overlord - Returns true if the Empire is an overlord of another Empire.
+Supported Scopes: country
+
+Supported targets:
+
+is_at_war_with - Checks if the empire is at war with a specific empire
+is_at_war_with = target
 Supported Scopes: country
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
@@ -277,7 +318,8 @@ Supported Scopes: country
 
 Supported targets: ???
 
-is_same_species_class - checks if a pop or empire is of the same species class as another pop or empire
+is_same_species_class - Checks if a pop or empire is of the same species class as another pop or empire
+is_same_species_class = target
 Supported Scopes: country pop
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
@@ -342,7 +384,8 @@ Supported Scopes: planet country ship pop fleet
 
 Supported targets: none
 
-has_pop_flag - Checks if a pop has a specified flag
+has_pop_flag - Checks if the pop has a specific flag
+has_pop_flag = <flag>
 Supported Scopes: pop
 
 Supported targets:
@@ -372,10 +415,11 @@ Supported Scopes: planet
 
 Supported targets: none
 
-has_global_flag - Checks a global trigger
-Supported Scopes: planet country ship pop fleet
+has_global_flag - Checks if a Global Flag has been set
+has_global_flag = <flag>
+Supported Scopes: ???
 
-Supported targets: none
+Supported targets:
 
 check_variable - Compares the variable value
 Supported Scopes: planet country fleet
@@ -397,7 +441,8 @@ Supported Scopes: ???
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
-energy - Checks for country energy
+energy - Checks the empire's energy stockpile compared to a value
+energy > 250
 Supported Scopes: country
 
 Supported targets:
@@ -427,7 +472,8 @@ Supported Scopes: planet
 
 Supported targets: none
 
-is_controlled_by - checks if a planet is controlled by a certain country
+is_controlled_by - Checks if a planet is controlled by a certain empire
+is_controlled_by = target
 Supported Scopes: planet
 
 Supported targets: none THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
@@ -467,7 +513,8 @@ Supported Scopes:
 
 Supported targets:
 
-has_star_flag - checks if a star has a specified flag
+has_star_flag - Checks if the solar system has a specific flag
+has_star_flag = <flag>
 Supported Scopes:
 
 Supported targets:
@@ -712,6 +759,12 @@ Supported Scopes: country
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
+minerals - Checks the empire's mineral stockpile compared to a value
+minerals > 250
+Supported Scopes: country
+
+Supported targets:
+
 has_grown_pop - Checks if a planet or tile has a grown pop
 Supported Scopes: planet
 
@@ -862,7 +915,8 @@ Supported Scopes: country
 
 Supported targets:
 
-has_modifier - checks if scope object has a modifier
+has_modifier - Checks if the empire/planet/pop has a certain modifier
+has_modifier = <modifier>
 Supported Scopes: planet country pop
 
 Supported targets: none
@@ -952,7 +1006,8 @@ Supported Scopes:
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
-is_same_value - checks if two scopes have the same value
+is_same_value - Checks if the current and the target scope are the same thing
+is_same_value = <target>
 Supported Scopes: ???
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
@@ -997,10 +1052,11 @@ Supported Scopes: country
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
-any_owned_pop - switches scope to and goes through each pop unit on the planet or all pops of the scope species
-Supported Scopes: country
+any_owned_pop - Checks if any of the empire's owned pops meet the specified criteria
+any_owned_pop = { <trigger> }
+Supported Scopes: planet country
 
-Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
+Supported targets: none THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
 has_faction - checks if an empire has a certain faction type
 Supported Scopes: country
@@ -1008,9 +1064,9 @@ Supported Scopes: country
 Supported targets:
 
 count_owned_pops - Counts the amount of pops which fill a requirement and compare it to a number
-Supported Scopes: country
+Supported Scopes: planet country
 
-Supported targets:
+Supported targets: none
 
 can_declare_war - Checks if we can declare war against a target
 Supported Scopes: country
@@ -1032,7 +1088,8 @@ Supported Scopes: country
 
 Supported targets: ???
 
-has_leader_flag - checks if a leader has a specified flag
+has_leader_flag - Checks if the leader has a specific flag
+has_leader_flag = <flag>
 Supported Scopes:
 
 Supported targets:
@@ -1057,7 +1114,8 @@ Supported Scopes: country
 
 Supported targets: ???
 
-has_pop_faction_flag - checks if a pop faction has a specified flag
+has_pop_faction_flag - Checks if the pop faction has a specific flag
+has_pop_faction_flag = <flag>
 Supported Scopes: pop
 
 Supported targets:
@@ -1167,7 +1225,8 @@ Supported Scopes: fleet
 
 Supported targets:
 
-has_tech_option - checks if a country has a technology option
+has_tech_option - Checks if the empire has a tech research option available
+has_tech_option = tech_mining_network_2
 Supported Scopes: country
 
 Supported targets:
@@ -1207,7 +1266,8 @@ Supported Scopes: country
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
-any_defender - switches Scope to any defender in the war
+any_defender - Checks if any defending empires in the current war meet the specified criteria
+
 Supported Scopes:
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
@@ -1242,7 +1302,8 @@ Supported Scopes:
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
-has_ambient_object_flag - checks if an ambient object has a specified flag
+has_ambient_object_flag - Checks if the ambient object has a specific flag
+has_ambient_object_flag = <flag>
 Supported Scopes:
 
 Supported targets:
@@ -1282,7 +1343,11 @@ Supported Scopes: country
 
 Supported targets: ???
 
-custom_tooltip_fail - shows custom text when trigger is failing
+custom_tooltip_fail - Shows custom text only when the associated trigger fails
+custom_tooltip_fail = {
+	text = <text>
+	<trigger>
+}
 Supported Scopes: ???
 
 Supported targets:
@@ -1292,7 +1357,8 @@ Supported Scopes: planet country
 
 Supported targets: none
 
-original_owner - checks if a planet is still owned by first colonizer
+original_owner - Checks if a planet is still owned by its first colonizer
+original owner = yes
 Supported Scopes: planet
 
 Supported targets: none
@@ -1407,11 +1473,6 @@ Supported Scopes: country
 
 Supported targets:
 
-is_wary_to - Attitude check, if country is wary of target country
-Supported Scopes: country
-
-Supported targets:
-
 fleet_power - Checks country fleet power
 Supported Scopes: country
 
@@ -1422,22 +1483,20 @@ Supported Scopes: country
 
 Supported targets:
 
-has_ai_personality - Checks if an Empire has a certain personality type
-Supported Scopes: country
-
-Supported targets:
-
-has_ai_personality_type - Checks if an Empire has a certain personality type
+has_ai_personality - Checks if an AI empire has a certain personality type
+has_ai_personality = fanatic_befrienders
 Supported Scopes: country
 
 Supported targets:
 
 has_ai_personality_behaviour - Checks if an Empire has a certain personality behaviour
+has_ai_personality_behaviour = slaver
 Supported Scopes: country
 
 Supported targets:
 
-has_valid_ai_personality - checks if a country has a valid ai
+has_valid_ai_personality - Checks if the country has a valid AI personality
+has_valid_ai_personality = yes
 Supported Scopes: country
 
 Supported targets:
@@ -1522,10 +1581,17 @@ Supported Scopes: pop
 
 Supported targets:
 
-is_subspecies - checks if a pop or empire is a subspecies of the same species as another pop or empire
+is_subspecies - Checks if the pop/empire/species is a subspecies of another pop/empire/species
+is_subspecies = target
 Supported Scopes: country pop
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
+
+is_original_owner - Checks if the target empire is the planet's original owner
+is_original_owner = target
+Supported Scopes: planet
+
+Supported targets: none THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
 is_valid - checks to see if the target of a scope is valid
 Supported Scopes: planet country
@@ -1562,10 +1628,10 @@ Supported Scopes: pop
 
 Supported targets:
 
-host_has_dlc - Checks if the host has a certain dlc enabled
+host_has_dlc - Checks if the host has a specific DLC enabled
 Supported Scopes: ???
 
-Supported targets: ???
+Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
 
 local_has_dlc - Checks if the host has a certain dlc enabled
 Supported Scopes: ???
@@ -1667,9 +1733,138 @@ Supported Scopes: country
 
 Supported targets:
 
+war_begun_num_fleets_gone_mia - Checks how many fleets went MIA due to the war declaration
+Supported Scopes:
+
+Supported targets:
+
+custom_tooltip_success - Shows custom text only when the associated trigger passes
+custom_tooltip_success = {
+	text = <text>
+	<trigger>
+}
+Supported Scopes: ???
+
+Supported targets:
+
+success_text - For 'desc={trigger={' use. Shows custom text when the associated trigger passes.
+success_text = {
+	text = <text>
+	<trigger>
+}
+Supported Scopes: ???
+
+Supported targets:
+
+fail_text - For 'desc={trigger={' use. Shows custom text when the associated trigger fails.
+fail_text = {
+	text = <text>
+	<trigger>
+}
+Supported Scopes: ???
+
+Supported targets:
+
+war_begun_num_wormhole_stations_destroyed - Checks how many fleets went MIA due to the war declaration
+Supported Scopes:
+
+Supported targets:
+
+is_neutral_to - Attitude check, if country is neutral towards target country
+Supported Scopes: country
+
+Supported targets:
+
+is_subject_type - Checks if a country is of a certain subject type.
+Supported Scopes: country
+
+Supported targets:
+
+has_defensive_pact - Checks if scope country has a defensive pact with target country
+Supported Scopes: country
+
+Supported targets:
+
+calc_true_if - Returns true if <amount> number of sub-triggers return true.
+Supported Scopes: ???
+
+Supported targets:
+
+has_spaceport_construction - Checks if the planet has a current construction of a spaceport.
+Supported Scopes: planet
+
+Supported targets: none
+
+is_researching_technology - Checks if the Empire is currently researching a specified technology.
+Supported Scopes: country
+
+Supported targets:
+
+has_any_resource - Checks whether a tile has any resource (bool)
+Supported Scopes:
+
+Supported targets:
+
+is_subject - Returns true if the Empire is a subject of another Empire.
+Supported Scopes: country
+
+Supported targets:
+
+any_subject - switches Scope to and goes through subjects of the Empire
+Supported Scopes: country
+
+Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
+
+has_closed_borders - check if country has closed borders to another
+Supported Scopes: country
+
+Supported targets:
+
+is_difficulty - checks difficulty
+Supported Scopes: ???
+
+Supported targets:
+
+is_exact_same_species - Checks if a pop/empire are originally of the same species, or currently of the exact same species instance, as another pop or empire
+is_same_species = target
+is_exact_same_species = target
+Supported Scopes: country pop
+
+Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
+
+any_support_effect_chance - Determines if any pop faction support effect is active and has a certain chance of occuring.
+Supported Scopes:
+
+Supported targets:
+
+can_control_access_for - Checks if a country can control their access towards a specified country
+Supported Scopes: country
+
+Supported targets:
+
+is_overlord_to - Attitude check, if country is overlord to target country
+Supported Scopes: country
+
+Supported targets:
+
+distance_to_core_percent - Compares an objects distance to galaxy core relative to galaxy radius
+Supported Scopes: ???
+
+Supported targets: ???
+
+has_empire_unique_building - checks if a planet has an empire unique building
+Supported Scopes:
+
+Supported targets:
+
+has_non_agression_pact - check if two countries have a non aggression pact
+Supported Scopes: country
+
+Supported targets:
+
 
 =================
-[19:28:29][consolecmdimpl.cpp:2098]: 
+[19:34:26][consolecmdimpl.cpp:2085]: 
 == EFFECT DOCUMENTATION ==
 tooltip - just a tooltip
 Supported Scopes: planet country ship pop
@@ -2046,7 +2241,7 @@ Supported Scopes: ship
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL LEADER SOLAR_SYSTEM RANDOM
 
-destroy_country - Removes a flag from a country
+destroy_country - Destroys the country
 Supported Scopes: country
 
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL LEADER SOLAR_SYSTEM RANDOM
@@ -2056,7 +2251,7 @@ Supported Scopes: leader star planet country fleet
 
 Supported targets: none
 
-remove_global_flag - Removes a flag from a country
+remove_global_flag - Removes a global flag
 Supported Scopes: ???
 
 Supported targets:
@@ -2641,6 +2836,11 @@ Supported Scopes: country
 
 Supported targets:
 
+conquer - Sets the owner of a planet, adding unhappiness modifier.
+Supported Scopes: planet
+
+Supported targets: none
+
 add_support - Adds to a pop factions Support level
 Supported Scopes:
 
@@ -2731,7 +2931,7 @@ Supported Scopes: country
 
 Supported targets:
 
-set_pop_faction_flag - Sets a flag on a pop
+set_pop_faction_flag - Sets a flag on a pop faction
 Supported Scopes: pop
 
 Supported targets:
@@ -2936,6 +3136,21 @@ Supported Scopes: planet
 
 Supported targets: none
 
+subtract_variable - Subtracts value from a variable
+Supported Scopes: leader star planet country fleet
+
+Supported targets: none
+
+multiply_variable - Multiplies a variable by value
+Supported Scopes: leader star planet country fleet
+
+Supported targets: none
+
+divide_variable - Divides a variable by value
+Supported Scopes: leader star planet country fleet
+
+Supported targets: none
+
 remove_opinion_modifier - Removes an opinion modifier to an empire.
 Supported Scopes: country
 
@@ -2991,8 +3206,43 @@ Supported Scopes: country
 
 Supported targets:
 
+set_closed_borders - Changes closed borders status between two countries
+Supported Scopes: country
+
+Supported targets:
+
 create_military_fleet - Creates a military fleet with the designs of a specified country.
 Supported Scopes: ???
+
+Supported targets:
+
+guarantee_country - Makes a country guarantee another country
+Supported Scopes: country
+
+Supported targets:
+
+every_owned_fleet - switches Scope to and goes through all owned fleet
+Supported Scopes: country
+
+Supported targets:
+
+every_subject - switches Scope to and goes through all Subjects
+Supported Scopes: country
+
+Supported targets:
+
+random_subject - Scopes to a random Subject
+Supported Scopes: country
+
+Supported targets:
+
+set_species_homeworld - Defines a homeworld for the current species.
+Supported Scopes:
+
+Supported targets:
+
+clear_resources - Clears resources of a tile
+Supported Scopes:
 
 Supported targets:
 
