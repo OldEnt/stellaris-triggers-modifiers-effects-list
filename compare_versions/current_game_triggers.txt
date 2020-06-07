@@ -1,6 +1,6 @@
-[19:03:24][game_application.cpp:254]: Game Version: Stellaris v1.0.3
-[19:03:24][defines.cpp:113]: 856 defines loaded
-[19:12:06][consolecmdimpl.cpp:2044]: 
+[19:27:34][game_application.cpp:254]: Game Version: Stellaris v1.1.0
+[19:27:34][defines.cpp:113]: 875 defines loaded
+[19:28:29][consolecmdimpl.cpp:2097]: 
 == TRIGGER DOCUMENTATION ==
 text - shows custom text
 Supported Scopes: ???
@@ -1617,6 +1617,21 @@ Supported Scopes: planet fleet
 
 Supported targets: none
 
+nor - negates content of trigger
+Supported Scopes: ???
+
+Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
+
+nand - negates content of trigger
+Supported Scopes: ???
+
+Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL RANDOM
+
+num_energy - compares the number of energy on a planet with a value
+Supported Scopes: planet
+
+Supported targets: none
+
 species_portrait - Checks if a species uses a certain portrait.
 Supported Scopes: country pop
 
@@ -1632,9 +1647,29 @@ Supported Scopes: planet country ship pop fleet
 
 Supported targets: ??? none
 
+num_war_demands - compares the number of war demands with a value
+Supported Scopes: ???
+
+Supported targets: ???
+
+max_naval_capacity - Compares a countries max naval capacity
+Supported Scopes: country
+
+Supported targets:
+
+used_naval_capacity_integer - Compares a countries used naval capacity
+Supported Scopes: country
+
+Supported targets:
+
+used_naval_capacity_percent - Compares a countries percent used naval capacity. values 0-1
+Supported Scopes: country
+
+Supported targets:
+
 
 =================
-[19:12:06][consolecmdimpl.cpp:2045]: 
+[19:28:29][consolecmdimpl.cpp:2098]: 
 == EFFECT DOCUMENTATION ==
 tooltip - just a tooltip
 Supported Scopes: planet country ship pop
