@@ -1,6 +1,6 @@
-[20:01:20][game_application.cpp:271]: Game Version: Capek v1.8.3
-[20:01:20][defines.cpp:108]: 1182 defines loaded
-[20:04:26][consolecmdimpl.cpp:2607]: 
+[20:11:52][game_application.cpp:271]: Game Version: Boulle v1.9.1
+[20:11:52][defines.cpp:108]: 1182 defines loaded
+[20:12:18][consolecmdimpl.cpp:2607]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -807,11 +807,6 @@ any_moon = { <triggers> }
 Supported Scopes: planet
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
-num_empires - Checks the number of regular empires in the galaxy
-num_empires > 3
-Supported Scopes: country
-Supported Targets: none
-
 num_adjacent_tiles - Checks the tile's number of adjacent tiles
 num_adjacent_tiles < 2
 Supported Scopes: tile
@@ -1534,6 +1529,11 @@ is_subspecies - Checks if the pop/country/species is a subspecies of the target 
 is_subspecies = <target>
 Supported Scopes: country pop species
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
+num_empires - Checks the number of regular empires in the galaxy
+num_empires > 3
+Supported Scopes: country
+Supported Targets: none
 
 is_belligerent_to - Checks if the country has a belligerent attitude towards target country
 is_belligerent_to = <target>
@@ -2370,7 +2370,7 @@ Supported Targets: none
 
 
 =================
-[20:04:26][consolecmdimpl.cpp:2608]: 
+[20:12:18][consolecmdimpl.cpp:2608]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: planet country ship pop
