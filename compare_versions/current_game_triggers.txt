@@ -1,6 +1,6 @@
-[20:15:11][game_application.cpp:283]: Game Version: Cherryh v2.0.5
-[20:15:11][defines.cpp:124]: 1304 defines loaded
-[20:15:57][consolecmdimpl.cpp:2711]: 
+[20:18:51][game_application.cpp:284]: Game Version: Niven v2.1.3
+[20:18:51][defines.cpp:124]: 1307 defines loaded
+[20:19:26][consolecmdimpl.cpp:2719]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -35,9 +35,9 @@ Supported Targets: none
 switch - Switch case for a trigger
 switch = {
 	trigger = pop_has_ethic
-	ethic_xenophile = { <effect> }
-	ethic_xenophobe = { <effect> }
-	default = { <effect> }
+	ethic_xenophile = { <trigger> }
+	ethic_xenophobe = { <trigger> }
+	default = { <trigger> }
 }
 Supported Scopes: all
 Supported Targets: ???
@@ -499,6 +499,11 @@ is_alliance_fleet = <yes/no>
 Supported Scopes: fleet
 Supported Targets: none
 
+is_researching_special_project - Checks if the country is currently researching a specific special project
+is_researching_special_project = special_project_name
+Supported Scopes: country leader
+Supported Targets: none
+
 and - all inside trigger must be true
 Supported Scopes: all
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
@@ -615,6 +620,11 @@ has_technology - Checks if the country has a technology (of at least a specific 
 has_technology = tech_spaceport_4
 Supported Scopes: country
 Supported Targets: none
+
+any_fleet_in_orbit - Checks if any fleet in orbit of the planet meet the specified criteria
+any_fleet_in_orbit = { <triggers> }
+Supported Scopes: planet
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
 has_planet_modifier - Checks if the planet has a specific planet modifier
 has_planet_modifier = pm_titanic_life
@@ -1153,6 +1163,10 @@ colony_age - Checks the planet's (colony's) age in months
 colony_age > 12
 Supported Scopes: planet
 Supported Targets: none
+
+is_bottleneck_system - Checks if the system is bottleneck within the range NDefines::NGameplay::SYSTEM_BOTTLENECK_RADIUSis_bottleneck_system = yes
+Supported Scopes: galactic_object
+Supported Targets: ???
 
 is_rim_system - Checks if the system is on the galactic rim
 is_rim_system = yes
@@ -2312,6 +2326,36 @@ has_hyperlane_to = <target>
 Supported Scopes: galactic_object
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
+is_bridge - Checks if a system has the bridge flag or not.
+is_bridge = <yes/no>
+Supported Scopes: galactic_object
+Supported Targets: none
+
+inverted_switch - Switch case for a trigger treated as NOT.
+inverted_switch = {
+	trigger = pop_has_ethic
+	ethic_xenophile = { <trigger> }
+	ethic_xenophobe = { <trigger> }
+	default = { <trigger> }
+}
+Supported Scopes: all
+Supported Targets: ???
+
+is_scope_set - Checks if the scope is set for appropriate target
+is_scope_set = <target>
+Supported Scopes: planet country ship pop fleet
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
+is_primary_star - Checks if the planet is the system's primary star
+is_primary_star = yes
+Supported Scopes: planet
+Supported Targets: none
+
+last_changed_species_rights_type - Check if the last species rights type changed for the pop or leader is of type type 
+last_changed_species_rights_type = <living_standard/citizenship/military_service/slavery/purge/colonization_control/population_control/migration_control/none>
+Supported Scopes: pop leader
+Supported Targets: none
+
 any_owned_army - Iterate through each army that is owned by the country
 any_owned_army = { <count=<num/all>> <triggers> }
 Supported Scopes: country
@@ -2469,7 +2513,7 @@ Supported Targets: none
 
 
 =================
-[20:15:57][consolecmdimpl.cpp:2712]: 
+[20:19:26][consolecmdimpl.cpp:2720]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: planet country ship pop
@@ -2667,9 +2711,24 @@ create_army = {
 Supported Scopes: planet
 Supported Targets: none
 
+modify_army - Modifies army with parameters:
+modify_army = {
+	name = <string>
+	owner = <target>
+	species = <target>
+	type = <key>
+}
+Supported Scopes: army
+Supported Targets: none
+
 set_location - Sets the fleet/ambient object's location, can be fine-tuned
 set_location = <target>
-set_location = { target = <target> distance = <int/random> angle = <int/random> }
+set_location = {
+	target = <target>
+	distance = <int/random>
+	angle = <int/random>
+	direction = <in_system/out_system>
+}
 Supported Scopes: fleet ambient_object
 Supported Targets: none
 
@@ -2680,6 +2739,7 @@ create_ship = {
 	random_existing_design = <ship size key>
 	graphical_culture = <graphical culture key>
 	prefix = <Y/N, determines if ship name should use owner country prefix>
+	colonizer_species = <species, default: fleet owner founder species>
 }
 Supported Scopes: fleet starbase
 Supported Targets: none
@@ -2894,9 +2954,16 @@ remove_star_flag = <key>
 Supported Scopes: galactic_object
 Supported Targets: none
 
+set_spawn_system_batch - Optimizes the calls for spawn_system effect.
+Spawn system should be located in a block between Begin and End.
+Begin: set_spawn_system_batch = begin
+End: set_spawn_system_batch = end
+Supported Scopes: all
+Supported Targets: none
+
 spawn_system - Spawns a new system at a position relative to the scoped system/planet/ship.
 spawn_system = { min_distance = <int 0-100> max_distance = <int 0-100> initializer = <key for pre-defined system> hyperlane=<yes/no> is_discovered=<yes/no>}
-Supported Scopes: planet ship galactic_object
+Supported Scopes: planet ship galactic_object no_scope
 Supported Targets: none
 
 random_research_station - Executes enclosed effects on a random orbital research station that meets the limit criteria
@@ -2971,6 +3038,11 @@ Supported Targets: none
 
 destroy_fleet - Destroys the target fleet (with death graphics)
 destroy_fleet = <target>
+destroy_fleet = {
+	target=<target>
+	kill_leader=<yes/no> #default yes
+	destroy_template=<yes/no> #default no
+}
 Supported Scopes: all
 Supported Targets: none
 
@@ -3330,7 +3402,7 @@ Supported Targets: none
 add_research_option - Adds a tech research option to the scoped country's tech view list, permanent until researched
 add_research_option = <key>
 Supported Scopes: country
-Supported Targets: none
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
 set_heir - Sets the target leader to be the scoped country's heir
 set_heir = <target>
@@ -3699,11 +3771,20 @@ Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEA
 
 delete_fleet - Deletes the target fleet (no death graphics)
 delete_fleet = <target>
+delete_fleet = {
+	target=<target>
+	kill_leader=<yes/no> #default yes
+	destroy_template=<yes/no> #default no
+}
 Supported Scopes: all
 Supported Targets: none
 
 add_trust - Adds trust on scope country towards target country
 add_trust = { amount = <amount> who = <target> }
+Supported Scopes: country
+Supported Targets: none
+
+add_tradition - Adds the specified tradition to the scoped country. add_tradition = <tradition_key>
 Supported Scopes: country
 Supported Targets: none
 
@@ -3783,7 +3864,16 @@ upgrade_megastructure_to - Starts an upgrade process on a mega structure. upgrad
 Supported Scopes: megastructure
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
-set_planet_entity - Change entity of a planet. set_planet_entity = { entity = <name of entity> graphical_culture = <target or name of culture> }
+set_planet_entity - Change entity of a planet.
+Example:
+set_planet_entity = {
+	entity = <name of entity>
+	graphical_culture = <target or name of culture>
+	picture = <picture override>
+	atmosphere_color = <color from 3 components>
+	atmosphere_intensity = <0.0 - 1.0>
+	atmosphere_width = <0.0 - 1.0> 
+}
 Supported Scopes: planet
 Supported Targets: none
 
@@ -3987,7 +4077,7 @@ Supported Scopes: all
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
 spawn_natural_wormhole - Spawns a new natural wormhole in the scoped system.
-spawn_system = { orbit_distance = 100 orbit_angle = 90 random_pos = yes/no }
+spawn_system = { bypass_type = <wormhole/sealed_wormhole> orbit_distance = 100 orbit_angle = 90 random_pos = yes/no }
 Supported Scopes: galactic_object
 Supported Targets: none
 
@@ -4099,6 +4189,91 @@ remove_hyperlane = { from = <system> to = <system> }
 Supported Scopes: all
 Supported Targets: none
 
+else_if - Executes enclosed effects if limit criteria of preceding 'if' or 'else_if' is not met, and its own limit is met
+if = { limit = { <triggers> } <effects> }
+else_if = { limit = { <triggers> } <effects> }
+Supported Scopes: all
+Supported Targets: none
+
+create_saved_leader - Creates a new saved leader for the scoped country with a lookup key
+create_saved_leader = {
+	key = <string>
+	creator = <target>
+	name = <random / string>
+	species = <target / key>
+	gender = <optional / gender> #defalut = random
+type = <random / key>
+	skill = <random / int>
+	set_age = <int>
+ traits = { trait = <key> trait = <key> }
+}
+Supported Scopes: country
+Supported Targets: none
+
+remove_saved_leader - Removes a saved leader for the scoped country with a lookup key
+remove_saved_leader = <string>
+Supported Scopes: country
+Supported Targets: none
+
+activate_saved_leader - Moves a saved leader to the active for the scoped country with a lookup key
+activate_saved_leader = {
+	key = <string>
+	add_to_owned=<yes/no> #default yes
+	effect = {...}
+}
+Supported Scopes: country
+Supported Targets: none
+
+move_pop - Moves a pop from a tile to another
+move_pop = <planet/tile>
+Supported Scopes: pop tile
+Supported Targets: ???
+
+delete_megastructure - Deletes the target mega structure (no death graphics)
+delete_megastructure = <target>
+Supported Scopes: all
+Supported Targets: none
+
+add_random_research_option - Adds s random tech research option to the scoped country's tech view list, permanent until researched. if none applicable it runs fail_effects
+add_random_research_option = {
+    category = <string>
+    area = <key>
+    tier = <int>
+   add_progress = <num>
+    ignore_prereqs = <yes/no> #default no
+    fail_effects = {}
+}
+Supported Scopes: country
+Supported Targets: none
+
+add_asteroid_belt - Adds an asteroid belt at the distance in the scope.
+Example:
+add_asteroid_belt = {
+	radius=<desired radius>
+	type=<asteroid belt type key>
+}
+Supported Scopes: galactic_object
+Supported Targets: none
+
+set_asteroid_belt - Sets an asteroid belt at the distance in the scope.
+Example:
+set_asteroid_belt = {
+	radius=<desired radius>
+	type=<asteroid belt type key>
+}
+Supported Scopes: galactic_object
+Supported Targets: none
+
+fleet_action_research_special_project - Sends a fleet to research a special project
+fleet_action_research_special_project = { special_project = test_project target = event_target:project_planet }
+Supported Scopes: fleet
+Supported Targets: none
+
+remove_orbital_deposit - Removes the orbital deposit slot from the scoped planet
+remove_orbital_deposit = yes
+Supported Scopes: planet
+Supported Targets: none
+
 country_event - Fires a country event for the scoped country, with optional DAYS and RANDOM delay
 country_event = { id = <event id> days = 30 random = 8 }
 Supported Scopes: country
@@ -4166,7 +4341,7 @@ Supported Targets: none
 
 pop_migration - Sets the scoped pop's migration speed
 Supported Scopes: pop
-Supported Targets: none
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
 create_rebels - Creates a rebellion
 create_rebels = {
@@ -4183,11 +4358,6 @@ cancel_terraformation - Cancels terraformation of the scoped planet
 cancel_terraformation = yes
 Supported Scopes: planet
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
-
-asteroids_distance - Sets an asteroid belt at the distance in the scope 
-asteroid_distance = N, distance of zero will remove the belt
-Supported Scopes: galactic_object
-Supported Targets: none
 
 set_primitive_age - Sets a 'primitive age' for the scoped (primitive, pre-FTL) country
 set_primitive_age = renaissance_age
@@ -4363,6 +4533,12 @@ set_disabled = no
 Supported Scopes: ship
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
+else - Executes enclosed effects if limit criteria of preceding 'if' or 'else_if' is not met
+if = { limit = { <triggers> } <effects> }
+else = { <effects> }
+Supported Scopes: all
+Supported Targets: none
+
 log - Prints a message to game.log for debugging purposes.
 Supported Scopes: all
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
@@ -4374,6 +4550,16 @@ Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEA
 
 debug_break - Trigger an assertion to stop the debugger when encountering this effect; argument is ignored
 debug_break = yes
+Supported Scopes: all
+Supported Targets: none
+
+inverted_switch - Executes the first appropriate effect set for a specific trigger treated as NOT.
+inverted_switch = {
+	trigger = <trigger>
+	<corresponding key/bool/int> = { <effect> }
+	<corresponding key/bool/int> > (less/greater than appear 'reversed') { <effect> }
+	default = { <effect> }
+}
 Supported Scopes: all
 Supported Targets: none
 
