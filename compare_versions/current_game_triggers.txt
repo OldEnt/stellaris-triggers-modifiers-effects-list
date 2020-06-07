@@ -1,6 +1,6 @@
-[19:38:28][game_application.cpp:264]: Game Version: Heinlein v1.3.2
-[19:38:28][defines.cpp:113]: 1024 defines loaded
-[19:39:39][consolecmdimpl.cpp:2501]: 
+[19:42:36][game_application.cpp:264]: Game Version: Kennedy v1.4.1
+[19:42:36][defines.cpp:113]: 1030 defines loaded
+[19:43:06][consolecmdimpl.cpp:2501]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -1196,7 +1196,7 @@ Supported Scopes: country
 Supported targets: ???
 
 has_point_of_interest - Checks if the scoped country has a specific point of interest in its situation log
-has_point_of_interest = { id = <id> }
+has_point_of_interest = { poi = <id> }
 Supported Scopes: planet country ship fleet
 Supported targets: ???
 
@@ -1373,7 +1373,7 @@ is_angry_to = <target>
 Supported Scopes: country
 Supported targets: none
 
-is_neighbor_of - Checks if the country is neighbors with target country
+is_neighbor_of - Checks if the country/planet is neighbors with target country
 is_neighbor_of = <target>
 Supported Scopes: planet country
 Supported targets: none
@@ -1871,6 +1871,11 @@ has_frontier_station = yes
 Supported Scopes: planet
 Supported targets: none
 
+num_strategic_resources - Checks the country's num of strategic resources
+num_strategic_resources < 3
+Supported Scopes: country
+Supported targets: none
+
 is_crises_allowed - Check if current game allows crises
 is_crises_allowed = yes
 Supported Scopes: all
@@ -1896,6 +1901,34 @@ is_point_of_interest = { id = <id> event_chain = <event_chain> owner = <target> 
 Supported Scopes: planet country ship
 Supported targets: ???
 
+count_countries - Checks the number of countries in the scope that fulfill the specified criteria
+count_countries = { count < 6 limit = { <triggers> } }
+Supported Scopes: all
+Supported targets: none
+
+pop_percentage - Checks the percentage of pops in the scope that fulfill the specified criteria
+pop_percentage = { percentage > 0.74 limit = { <triggers> } }
+Supported Scopes: planet country
+Supported targets: none
+
+num_species - Checks if the number of species on a planet, in an empire or in a pop faction is according to the argument. Does not count genetically modified species as unique.
+num_species > 8
+Supported Scopes: planet country
+Supported targets: none
+
+num_unique_species - Checks if the number of species on a planet, in an empire or in a pop faction is according to the argument. Counts genetically modified species as unique.
+num_unique_species < 12
+Supported Scopes: planet country
+Supported targets: none
+
+has_diplo_migration_treaty - Checks if two countries have a migration treaty.
+Supported Scopes: country
+Supported targets: none
+
+won_with_condition - Checks if two countries have a migration treaty.
+Supported Scopes: country
+Supported targets: none
+
 terraformed_by - Checks if planet is terraformed by country.
 Supported Scopes: planet
 Supported targets: none
@@ -1912,7 +1945,7 @@ Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FR
 
 
 =================
-[19:39:39][consolecmdimpl.cpp:2502]: 
+[19:43:06][consolecmdimpl.cpp:2502]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: planet country ship pop
@@ -2609,7 +2642,7 @@ Supported Scopes: leader
 Supported targets: none
 
 modify_species - Creates a new, modified species based on an already-extant species
-modify_species = { species = <target> add_trait = <key, optional> remove_rait = <key, optional> }
+modify_species = { species = <target> add_trait = <key, optional> remove_trait = <key, optional> ideal_planet_class = <target> }
 Supported Scopes: leader planet country pop
 Supported targets: none
 
@@ -3075,7 +3108,7 @@ Supported Scopes: country
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL LEADER SOLAR_SYSTEM RANDOM
 
 create_sector - Creates a sector with a specific capital planet, of a specific type, and with optional additional systems within the scoped country
-create_sector = { capital = <target> type = <string> additionalsystems = <target> }
+create_sector = { capital = <target> type = <string> add = <target> add = <target>}
 Supported Scopes: country
 Supported targets: none
 
@@ -3211,7 +3244,7 @@ Supported targets: none
 
 exile_leader_as - Exiles the scoped country/fleet/army/pop faction's leader and saves them with a custom name
 exile_leader_as = <key>
-Supported Scopes: country fleet
+Supported Scopes: leader country fleet
 Supported targets: THIS ROOT PREV PREVPREV PREVPREVPREV PREVPREVPREVPREV FROM FROMFROM OWNER CONTROLLER CAPITAL LEADER SOLAR_SYSTEM RANDOM
 
 set_leader - Reinstates a previously-exiled leader to the scoped country/fleet/army/pop faction
@@ -3447,6 +3480,14 @@ Supported targets: none
 
 set_custom_capital_location - Sets a custom spatial object as custom country capital location.
 Supported Scopes: country
+Supported targets: none
+
+build_pop - Creates a buildable pop on the scoped tile/planet
+create_pop = {
+	species = <target / key>
+ethos = <random / target / { ethic = <key> ethic = <key> }>
+}
+Supported Scopes: planet
 Supported targets: none
 
 random_war_participant - Iterate through all war participants
