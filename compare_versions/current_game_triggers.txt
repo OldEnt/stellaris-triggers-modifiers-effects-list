@@ -1,6 +1,6 @@
-[21:15:09][game_application.cpp:378]: Game Version: Wells 2.7.1
-[21:15:09][defines.cpp:123]: 1312 defines loaded
-[21:15:39][consolecmdimpl.cpp:2492]: 
+[21:22:17][game_application.cpp:378]: Game Version: Wells 2.7.2
+[21:22:17][defines.cpp:123]: 1312 defines loaded
+[21:22:58][consolecmdimpl.cpp:2492]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -115,7 +115,7 @@ Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEA
 
 num_favors - Check amount of favors that scoped country can collect from target country:
 num_favors = {
-	arget = <country>
+	target = <country>
 	value ><= <value>
 }
 
@@ -2186,7 +2186,7 @@ resource_stockpile_compare = {
 Supported Scopes: country
 Supported Targets: ???
 
-planet_resource_compare - Checks specific resource value for province scope scope:
+planet_resource_compare - Checks specific resource value for scoped planet:
 planet_resource_compare = {
 	resource = <resource_name>
 	value ><= <value>
@@ -3215,7 +3215,7 @@ Supported Targets: none
 
 
 =================
-[21:15:39][consolecmdimpl.cpp:2493]: 
+[21:22:58][consolecmdimpl.cpp:2493]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: all
@@ -4362,13 +4362,13 @@ stop_crisis_sound = yes
 Supported Scopes: all
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
-force_add_civic - Adds civic to a goverment without checking the restrictions
-add_civic = <civic>
+force_add_civic - Adds civic to a government without checking the restrictions
+force_add_civic = <civic>
 Supported Scopes: country
 Supported Targets: none
 
-force_remove_civic - Removes civic to a goverment without checking the restrictions
-forced_remove_civic = <civic>
+force_remove_civic - Removes civic from a government without checking the restrictions
+force_remove_civic = <civic>
 Supported Scopes: country
 Supported Targets: none
 
@@ -4417,8 +4417,8 @@ end_rivalry = <target>
 Supported Scopes: country
 Supported Targets: none
 
-set_truce - Force a truce with target country of a specified typ, or a war
-set_truce = { target = x type = y }
+set_truce - Force a truce with target country of a specified type, or a war
+set_truce = { target = <country/war> type = war/liberation/alliance/guarantee/none }
 Supported Scopes: country
 Supported Targets: none
 
