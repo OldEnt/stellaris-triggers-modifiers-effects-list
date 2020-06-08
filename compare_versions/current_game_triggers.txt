@@ -1,6 +1,6 @@
-[19:30:26][game_application.cpp:300]: Game Version: Wolfe v2.3.0
-[19:30:26][defines.cpp:123]: 1177 defines loaded
-[19:33:31][consolecmdimpl.cpp:2694]: 
+[18:47:54][game_application.cpp:300]: Game Version: Wolfe v2.3.2
+[18:47:54][defines.cpp:123]: 1179 defines loaded
+[19:01:43][consolecmdimpl.cpp:2694]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -473,6 +473,16 @@ valid tokens are: none, megastructure, planet, country, ship, pop, fleet, galact
 Supported Scopes: all
 Supported Targets: none
 
+has_unlocked_all_traditions - Checks if the country has unlocked all traditions
+has_unlocked_all_traditions = yes/no
+Supported Scopes: country
+Supported Targets: ???
+
+has_potential_claims - Checks if the country has any potential claims they can make.
+has_potential_claims = yes/no
+Supported Scopes: country
+Supported Targets: ???
+
 and - all inside trigger must be true
 Supported Scopes: all
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
@@ -821,8 +831,8 @@ is_inside_nebula = yes
 Supported Scopes: planet ship fleet galactic_object
 Supported Targets: none
 
-is_infrontier_space - checks if the planet/ship/fleet/system is in frontier space
-is_infrontier_space = yes
+is_in_frontier_space - checks if the planet/ship/fleet/system is in frontier space
+is_in_frontier_space = yes
 Supported Scopes: planet ship fleet galactic_object
 Supported Targets: none
 
@@ -2760,7 +2770,7 @@ Supported Targets: none
 
 
 =================
-[19:33:31][consolecmdimpl.cpp:2695]: 
+[19:01:43][consolecmdimpl.cpp:2695]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: planet country ship pop fleet
@@ -4300,7 +4310,7 @@ Supported Scopes: all
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
 spawn_natural_wormhole - Spawns a new natural wormhole in the scoped system.
-spawn_system = { bypass_type = <wormhole/sealed_wormhole> orbit_distance = 100 orbit_angle = 90 random_pos = yes/no }
+spawn_natural_wormhole = { bypass_type = <wormhole/sealed_wormhole> orbit_distance = 100 orbit_angle = 90 random_pos = yes/no }
 Supported Scopes: galactic_object
 Supported Targets: none
 
