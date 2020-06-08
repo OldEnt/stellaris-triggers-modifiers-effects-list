@@ -1,6 +1,6 @@
-[20:18:51][game_application.cpp:284]: Game Version: Niven v2.1.3
-[20:18:51][defines.cpp:124]: 1307 defines loaded
-[20:19:26][consolecmdimpl.cpp:2719]: 
+[23:45:20][game_application.cpp:322]: Game Version: Niven v2.1.4
+[23:45:20][defines.cpp:124]: 1311 defines loaded
+[23:48:15][consolecmdimpl.cpp:2721]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -2513,7 +2513,7 @@ Supported Targets: none
 
 
 =================
-[20:19:26][consolecmdimpl.cpp:2720]: 
+[23:48:16][consolecmdimpl.cpp:2722]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: planet country ship pop
@@ -4462,6 +4462,10 @@ Supported Targets: none
 random_pop_faction - Executes enclosed effects on a random pop faction within the scoped country that meets the limit criteria
 random_pop_faction = { limit = { <triggers> } <effects> }
 Supported Scopes: country
+Supported Targets: none
+
+observer_event - Fires an observer event for all observers.
+Supported Scopes: all
 Supported Targets: none
 
 set_custom_capital_location - Sets a custom spatial object as custom country capital location.
