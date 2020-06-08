@@ -1,6 +1,6 @@
-[21:09:43][game_application.cpp:365]: Game Version: Verne v2.6.2
-[21:09:43][defines.cpp:123]: 1309 defines loaded
-[21:10:07][consolecmdimpl.cpp:2492]: 
+[21:12:22][game_application.cpp:365]: Game Version: Verne v2.6.3
+[21:12:22][defines.cpp:123]: 1310 defines loaded
+[21:13:22][consolecmdimpl.cpp:2492]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -2782,6 +2782,11 @@ is_in_breach_of_any = yes/no
 Supported Scopes: country
 Supported Targets: none
 
+in_breach_of - Checks if the scoped country is in breach of the specified resolution (or would be, were it to be enacted)
+in_breach_of = <resolution>
+Supported Scopes: country
+Supported Targets: none
+
 num_council_positions - Compares the number of council positions in the Galactic Community.
 num_council_positions >= <int32>
 Supported Scopes: all
@@ -2818,6 +2823,26 @@ num_ai_empires_setting - Checks the number of AI empires defined in setup
 num_ai_empires_setting >= 1
 Supported Scopes: all
 Supported Targets: none
+
+galaxy_size - Checks whether the galaxy size if of a certain type
+galaxy_size=medium
+Supported Scopes: all
+Supported Targets: none
+
+pop_has_happiness - Checks if the current pop has happiness or not.
+pop_has_happiness = yes/no
+Supported Scopes: pop
+Supported Targets: none
+
+species_has_happiness_with_owner - Checks if the current species has happiness or not when owned by a specified country.
+species_has_happiness_with_owner = country
+Supported Scopes: species
+Supported Targets: none
+
+num_planets_in_system - Checks the solar system's total number of planets
+num_planets_in_system > 5
+Supported Scopes: galactic_object
+Supported Targets: ???
 
 any_owned_army - Iterate through each army that is owned by the country
 any_owned_army = { <count=<num/all>> <triggers> }
@@ -3070,7 +3095,7 @@ Supported Targets: none
 
 
 =================
-[21:10:07][consolecmdimpl.cpp:2493]: 
+[21:13:22][consolecmdimpl.cpp:2493]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: planet country ship pop fleet
@@ -3133,7 +3158,7 @@ Supported Targets: none
 
 set_owner - Instantly sets the owner of the scoped planet/fleet/army/starbase to target country
 set_owner = <target>
-Supported Scopes: planet fleet army starbase
+Supported Scopes: planet fleet leader army starbase
 Supported Targets: none
 
 unemploy_pop - Fires scoped pop from its job
@@ -3323,6 +3348,7 @@ create_country = {
 	species = <target>
 	flag = <random / { icon = { category = <key> file = <filename.dds> } background = { category = <key> file = <filename.dds> } colors = { <key> <key> } }
 	ethos = <random / { ethic = <key> ethic = <key> }>
+	restrictions = { <restrictions, see "common\governments\readme_requirements.txt"> }
 	effect = { <effects executed on country> }
 }
 Supported Scopes: all
