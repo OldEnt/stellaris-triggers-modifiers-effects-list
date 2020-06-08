@@ -2,6 +2,7 @@ blank_modifier
 pop_political_power
 pop_happiness
 biological_pop_happiness
+lithoid_pop_happiness
 pop_housing_usage_base
 pop_housing_usage_add
 pop_housing_usage_mult
@@ -15,6 +16,12 @@ pop_decline_speed
 pop_growth_from_immigration
 pop_growth_speed
 pop_growth_speed_reduction
+bio_pop_growth_from_immigration
+bio_pop_growth_speed
+bio_pop_growth_speed_reduction
+lith_pop_growth_from_immigration
+lith_pop_growth_speed
+lith_pop_growth_speed_reduction
 pop_assembly_speed
 pop_environment_tolerance
 pop_government_ethic_attraction

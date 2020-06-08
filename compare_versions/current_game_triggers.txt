@@ -1,6 +1,6 @@
-[20:57:48][game_application.cpp:350]: Game Version: Shelley v2.5.0
-[20:57:48][defines.cpp:123]: 1188 defines loaded
-[20:58:42][consolecmdimpl.cpp:2484]: 
+[21:00:36][game_application.cpp:350]: Game Version: Shelley v2.5.1
+[21:00:36][defines.cpp:123]: 1188 defines loaded
+[21:01:54][consolecmdimpl.cpp:2484]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -2785,7 +2785,7 @@ Supported Targets: none
 
 
 =================
-[20:58:42][consolecmdimpl.cpp:2485]: 
+[21:01:54][consolecmdimpl.cpp:2485]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: planet country ship pop fleet
