@@ -1,6 +1,6 @@
-[06:22:37][game_application.cpp:295]: Game Version: Le Guin v2.2.1
-[06:22:37][defines.cpp:124]: 1281 defines loaded
-[06:25:21][consolecmdimpl.cpp:2651]: 
+[20:32:56][game_application.cpp:295]: Game Version: Le Guin v2.2.7
+[20:32:56][defines.cpp:124]: 1313 defines loaded
+[20:33:40][consolecmdimpl.cpp:2652]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -99,8 +99,8 @@ Supported Scopes: species
 Supported Targets: none
 
 faction_approval - Checks the scoped faction's approval percentage
-faction_approval < 90
-Supported Scopes: pop
+faction_approval < 0.9
+Supported Scopes: pop_faction
 Supported Targets: none
 
 last_building_changed - Checks if the last building queued/unqueued/built/demolished/upgraded was the specified building
@@ -446,6 +446,18 @@ is_researching_special_project = special_project_name
 Supported Scopes: country leader
 Supported Targets: none
 
+any_system_planet - Checks if any planet in the system meets the specified criteria
+any_planet = { <triggers> }
+Supported Scopes: galactic_object
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
+is_scope_type - Checks currently in the specified scope:
+is_scope_type = fleet
+valid tokens are: none, megastructure, planet, country, ship, pop, fleet, galactic_object, leader, army, ambient_object, species, design,pop_faction, war, alliance, starbase,deposit,observer, sector.
+
+Supported Scopes: all
+Supported Targets: none
+
 and - all inside trigger must be true
 Supported Scopes: all
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
@@ -458,9 +470,9 @@ not - An inverted trigger
 Supported Scopes: all
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
-any_planet - Checks if any planet in the system meets the specified criteria
+any_planet - Checks if any planet ANYWHERE meets the specified criteria
 any_planet = { <triggers> }
-Supported Scopes: galactic_object
+Supported Scopes: all
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
 is_star - Checks if the planet is a star
@@ -779,6 +791,11 @@ is_primitive = yes
 Supported Scopes: country
 Supported Targets: none
 
+is_archetype - Checks if species has specified archetype:
+is_archetype = PRESAPIENT
+Supported Scopes: species
+Supported Targets: none
+
 is_inside_nebula - checks if the planet/ship/fleet/system is inside a nebula
 is_inside_nebula = yes
 Supported Scopes: planet ship fleet galactic_object
@@ -1002,6 +1019,11 @@ Supported Targets: none
 produced_energy - Checks the country's gross amount of produced energy credits
 produced_energy < 100
 Supported Scopes: country
+Supported Targets: none
+
+num_uncleared_blockers - Checks the planet's total amount of uncleared blockers
+num_uncleared_blockers > 3
+Supported Scopes: planet
 Supported Targets: none
 
 trade_income - Checks the country's energy credits income from trade for the previous month
@@ -2639,7 +2661,7 @@ Supported Targets: none
 
 
 =================
-[06:25:21][consolecmdimpl.cpp:2652]: 
+[20:33:40][consolecmdimpl.cpp:2653]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: planet country ship pop
@@ -4616,8 +4638,7 @@ trigger_megastructure_icon - if a planet has trigger_megastructure_icon = yes th
 Supported Scopes: planet
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
-run_ai_strategic_data - Runs strategic data for AI
-destroy_country = yes
+run_ai_strategic_data - Recomputes ALL strategic data for AI = yes
 Supported Scopes: country
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
@@ -4629,6 +4650,10 @@ Supported Targets: none
 set_planet_size - Adds/Removes tiles to/from the scoped planet to adjust its planet size
 set_planet_size = <int>
 Supported Scopes: planet
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
+run_ai_strategic_war_data - Recomputes strategic war ( attack / defense ) data for AI = yes
+Supported Scopes: country
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
 every_system_planet - Executes enclosed effects on every planet within the scoped system that meets the limit criteria
