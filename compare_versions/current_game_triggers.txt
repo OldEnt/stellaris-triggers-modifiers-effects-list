@@ -1,6 +1,6 @@
-[20:43:47][game_application.cpp:350]: Game Version: 2.4.0
-[20:43:47][defines.cpp:123]: 1188 defines loaded
-[20:51:39][consolecmdimpl.cpp:2484]: 
+[20:54:29][game_application.cpp:350]: Game Version: Lee v2.4.1
+[20:54:29][defines.cpp:123]: 1188 defines loaded
+[20:54:57][consolecmdimpl.cpp:2484]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -2780,7 +2780,7 @@ Supported Targets: none
 
 
 =================
-[20:51:39][consolecmdimpl.cpp:2485]: 
+[20:54:57][consolecmdimpl.cpp:2485]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: planet country ship pop fleet
