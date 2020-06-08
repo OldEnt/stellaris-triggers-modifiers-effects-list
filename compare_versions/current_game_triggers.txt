@@ -1,6 +1,6 @@
-[18:47:54][game_application.cpp:300]: Game Version: Wolfe v2.3.2
-[18:47:54][defines.cpp:123]: 1179 defines loaded
-[19:01:43][consolecmdimpl.cpp:2694]: 
+[20:37:53][game_application.cpp:301]: Game Version: Wolfe v2.3.3
+[20:37:53][defines.cpp:123]: 1184 defines loaded
+[20:38:24][consolecmdimpl.cpp:2697]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -2593,6 +2593,16 @@ is_current_excavator_fleet = <fleet>
 Supported Scopes: archaeological_site
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
+is_last_lost_relic - Checks whether the relic passed in parameter is the last relic lost by the country int the current scope.
+is_last_lost_relic = <relic_key>
+Supported Scopes: country
+Supported Targets: none
+
+is_last_received_relic - Checks whether the relic passed in parameter is the last relic received by the country int the current scope.
+is_last_received_relic = <relic_key>
+Supported Scopes: country
+Supported Targets: none
+
 any_owned_army - Iterate through each army that is owned by the country
 any_owned_army = { <count=<num/all>> <triggers> }
 Supported Scopes: country
@@ -2770,7 +2780,7 @@ Supported Targets: none
 
 
 =================
-[19:01:43][consolecmdimpl.cpp:2695]: 
+[20:38:24][consolecmdimpl.cpp:2698]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: planet country ship pop fleet
@@ -3274,8 +3284,8 @@ Supported Scopes: all
 Supported Targets: none
 
 spawn_system - Spawns a new system at a position relative to the scoped system/planet/ship.
-spawn_system = { min_distance = <int 0-100> max_distance = <int 0-100> initializer = <key for pre-defined system> hyperlane=<yes/no> is_discovered=<yes/no>}
-Supported Scopes: planet ship galactic_object no_scope
+spawn_system = { min_jumps = <value> max_jumps = <value> min_distance = <int 0-100> max_distance = <int 0-100> initializer = <key for pre-defined system> hyperlane=<yes/no> is_discovered=<yes/no>}
+Supported Scopes: megastructure planet ship fleet galactic_object starbase no_scope
 Supported Targets: none
 
 random_research_station - Executes enclosed effects on a random orbital research station that meets the limit criteria
@@ -3445,7 +3455,9 @@ Supported Scopes: country
 Supported Targets: none
 
 add_anomaly - Adds a specific anomaly category to the scoped planet
-add_anomaly = <key>
+add_anomaly = {
+ category = <key>
+ target = target:country }
 Supported Scopes: all
 Supported Targets: none
 
@@ -4596,6 +4608,11 @@ custom_tooltip_with_param = {
 	}
 }
 Supported Scopes: all
+Supported Targets: none
+
+steal_relic - Steal all/a random/a specific relic from a target country
+steal_relice = { target = <Target Country> relic = <relic_name/all/random>
+Supported Scopes: country
 Supported Targets: none
 
 validate_planet_buildings_and_districts - Rebuild modifiers on target planet
