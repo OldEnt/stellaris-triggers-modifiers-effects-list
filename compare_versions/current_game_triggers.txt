@@ -1,6 +1,6 @@
-[20:32:56][game_application.cpp:295]: Game Version: Le Guin v2.2.7
-[20:32:56][defines.cpp:124]: 1313 defines loaded
-[20:33:40][consolecmdimpl.cpp:2652]: 
+[19:30:26][game_application.cpp:300]: Game Version: Wolfe v2.3.0
+[19:30:26][defines.cpp:123]: 1177 defines loaded
+[19:33:31][consolecmdimpl.cpp:2694]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -103,6 +103,16 @@ faction_approval < 0.9
 Supported Scopes: pop_faction
 Supported Targets: none
 
+has_designation - Checks if the colony has a certain designation
+has_designation = col_rural
+Supported Scopes: planet
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
+colony_type - Checks if the colony is of a certain type
+colony_type = col_rural
+Supported Scopes: planet
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
 last_building_changed - Checks if the last building queued/unqueued/built/demolished/upgraded was the specified building
 last_building_changed = building_capitol
 Supported Scopes: planet
@@ -145,7 +155,7 @@ Supported Targets: none
 
 distance - Checks the ship/fleet/planet/leader/pop/system's galaxy map distance to target in absolute units
 distance = { source = <target> min = 50 max = 120 type=<hyperlane/euclidean> uses_bypass=<yes/no> bypass_empire=<empire> min_jumps = 2 max_jumps = 10 }
-Supported Scopes: planet ship pop fleet galactic_object leader
+Supported Scopes: planet ship pop fleet galactic_object leader archaeological_site
 Supported Targets: none
 
 is_pirate - Checks if the country is a pirate country
@@ -446,6 +456,11 @@ is_researching_special_project = special_project_name
 Supported Scopes: country leader
 Supported Targets: none
 
+last_activated_relic - Checks if the specified relic was the last activated one 
+last_activated_relic = <relic_key>
+Supported Scopes: country
+Supported Targets: none
+
 any_system_planet - Checks if any planet in the system meets the specified criteria
 any_planet = { <triggers> }
 Supported Scopes: galactic_object
@@ -594,6 +609,11 @@ Supported Targets: none
 num_guaranteed_colonies - Checks the number of guaranteed colonies defined in setup
 num_guaranteed_colonies > 1
 Supported Scopes: all
+Supported Targets: none
+
+num_owned_relics - Checks the number of relics owned by the scoped country
+num_owned_relics > 1
+Supported Scopes: country
 Supported Targets: none
 
 has_branch_office - Check if the planet has a branch office owned by target country/any country/no country
@@ -798,6 +818,11 @@ Supported Targets: none
 
 is_inside_nebula - checks if the planet/ship/fleet/system is inside a nebula
 is_inside_nebula = yes
+Supported Scopes: planet ship fleet galactic_object
+Supported Targets: none
+
+is_infrontier_space - checks if the planet/ship/fleet/system is in frontier space
+is_infrontier_space = yes
 Supported Scopes: planet ship fleet galactic_object
 Supported Targets: none
 
@@ -2484,6 +2509,80 @@ num_sectors >= 1
 Supported Scopes: country
 Supported Targets: none
 
+has_deposit_category - Checks if a deposit has specified category
+has_deposit_category = <category key>
+Supported Scopes: deposit
+Supported Targets: none
+
+has_relic - Checks if the scoped country has the specified relic
+has_relic = <relic_key>
+Supported Scopes: country
+Supported Targets: none
+
+caravaneers_enabled - Checks if Caravaneers are enabled in game setup
+Supported Scopes: all
+Supported Targets: ???
+
+is_site_last_die_result - Compares the last dice roll.
+is_last_die_result >= <int>
+Supported Scopes: archaeological_site
+Supported Targets: none
+
+is_current_stage_difficulty - Compares the current stage difficulty.
+is_current_stage_difficulty >= <int>
+Supported Scopes: archaeological_site
+Supported Targets: none
+
+is_site_at_stage - Compares the current stage index.
+is_at_stage >= <int>
+Supported Scopes: archaeological_site
+Supported Targets: none
+
+is_current_stage_clues - Compares the current stage clues.
+is_current_stage_clues >= <int>
+Supported Scopes: archaeological_site
+Supported Targets: none
+
+is_site_days_to_next_die_roll - Compares days to next die roll.
+is_days_to_next_die_roll >= <int>
+Supported Scopes: archaeological_site
+Supported Targets: none
+
+is_site_last_excavator - Checks last excavating country.
+is_last_excavator = <country>
+Supported Scopes: archaeological_site
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
+is_site_type - Checks the type of the site.
+is_site_type = <archaeological site type key>
+Supported Scopes: archaeological_site
+Supported Targets: none
+
+is_site_completed - Checks if all stages has ben completed.
+is_site_completed = yes/no
+Supported Scopes: archaeological_site
+Supported Targets: none
+
+is_site_under_excavation - Checks if the site is currently being excavated.
+is_site_under_excavation_ = yes/no
+Supported Scopes: archaeological_site
+Supported Targets: none
+
+is_site_current_stage_score - Compares the current stage discovery score.
+is_site_current_stage_score >= <int>
+Supported Scopes: archaeological_site
+Supported Targets: none
+
+is_site_current_stage_score_no_die - Compares the current stage discovery score excluding the current die roll.
+is_site_current_stage_score_no_die >= <int>
+Supported Scopes: archaeological_site
+Supported Targets: none
+
+is_current_excavator_fleet - Checks current excavator fleet.
+is_current_excavator_fleet = <fleet>
+Supported Scopes: archaeological_site
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
 any_owned_army - Iterate through each army that is owned by the country
 any_owned_army = { <count=<num/all>> <triggers> }
 Supported Scopes: country
@@ -2661,10 +2760,10 @@ Supported Targets: none
 
 
 =================
-[20:33:40][consolecmdimpl.cpp:2653]: 
+[19:33:31][consolecmdimpl.cpp:2695]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
-Supported Scopes: planet country ship pop
+Supported Scopes: planet country ship pop fleet
 Supported Targets: ???
 
 hidden_effect - Prevents enclosed effects from being displayed in tooltip
@@ -2684,6 +2783,11 @@ Supported Targets: none
 
 random_list - Picks one random set of effects from a list, influenced by relative weight
 random_list = { 50 = { <effects> } 20 = { <effects> } 30 = { <effects> } 999 = { <effects> } }
+Supported Scopes: all
+Supported Targets: none
+
+locked_random_list - Picks one random set of effects from a list, influenced by relative weight once per event scope
+locked_random_list = { 50 = { <effects> } 20 = { <effects> } 30 = { <effects> } 999 = { <effects> } }
 Supported Scopes: all
 Supported Targets: none
 
@@ -4343,6 +4447,14 @@ activate_saved_leader = {
 Supported Scopes: country
 Supported Targets: none
 
+add_relic - Adds the specified relic to the scoped country. add_relic = <relic_key>
+Supported Scopes: country
+Supported Targets: none
+
+remove_relic - Removes the specified relic from the scoped country. remove_relic = <relic_key>
+Supported Scopes: country
+Supported Targets: none
+
 delete_megastructure - Deletes the target mega structure (no death graphics)
 delete_megastructure = <target>
 Supported Scopes: all
@@ -4355,6 +4467,7 @@ add_random_research_option = {
     tier = <int>
    add_progress = <num>
     ignore_prereqs = <yes/no> #default no
+    ignore_rare = <yes/no> #default yes
     fail_effects = {}
 }
 Supported Scopes: country
@@ -4411,6 +4524,69 @@ Supported Targets: none
 enable_galactic_market - Enables the galactic market. enable_galactic_market = <yes/no> 
 Supported Scopes: country
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
+add_timed_trait - Adds a specific trait to the scoped leader for a specific duration
+add_timed_trait = { trait = <trait> days/months/years = <value> }
+Supported Scopes: leader
+Supported Targets: none
+
+create_archaeological_site - Creates a archaeological site associated with the scope object
+create_archaeological_site = <site type>
+Supported Scopes: megastructure planet ship fleet galactic_object ambient_object starbase
+Supported Targets: none
+
+destroy_archaeological_site - Destroys a archaeological site in right hand site event target
+destroy_archaeological_site = <event target>
+Supported Scopes: all
+Supported Targets: ???
+
+add_stage_clues - Adds clues to the current stage of a archaeological site
+add_stage_clues = <int>
+Supported Scopes: archaeological_site
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
+add_expedition_log_entry - Adds clues to the current stage of a archaeological site
+add_stage_clues = <int>
+Supported Scopes: archaeological_site
+Supported Targets: none
+
+reset_current_stage - Resets the current stage
+reset_current_stage = yes/no
+yes = also randomize new difficulty if stage allows that.
+no = does not change difficulty
+Supported Scopes: archaeological_site
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
+finish_current_stage - Finish the current stage
+finish_current_stage = yes/no/<country>
+yes = trigger stage completed for each stage and current excavator.
+no = do not trigger any stage completed
+country = use this country instead of excavator, no stage complete will be triggered.
+Supported Scopes: archaeological_site
+Supported Targets: none
+
+finish_site - Finish the whole archaeological site
+finish_site	 = yes/no/<country>
+yes = trigger stage completed for each stage and current excavator.
+no = do not trigger any stage completed
+country = use this country instead of excavator, no stage complete will be triggered.
+Supported Scopes: archaeological_site
+Supported Targets: none
+
+set_site_progress_locked - Locks or unlocks the progress of a site
+set_site_progress_locked = yes/no
+Supported Scopes: archaeological_site
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
+custom_tooltip_with_params - Displays a specific localization string with parameters in tooltip
+custom_tooltip_with_param = {
+	description = <loc key>
+	description_parameters = {
+		<value key> = <string/int/num/bool>
+	}
+}
+Supported Scopes: all
+Supported Targets: none
 
 validate_planet_buildings_and_districts - Rebuild modifiers on target planet
 reroll_planet_modifiers = yes
@@ -4655,6 +4831,11 @@ Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEA
 run_ai_strategic_war_data - Recomputes strategic war ( attack / defense ) data for AI = yes
 Supported Scopes: country
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
+expire_site_event - Manually flags an archaeological event as expired
+expire_site_event = ancrel.7003
+Supported Scopes: archaeological_site
+Supported Targets: none
 
 every_system_planet - Executes enclosed effects on every planet within the scoped system that meets the limit criteria
 random_system = { limit = { <triggers> } <effects> }
