@@ -1,6 +1,6 @@
-[21:04:55][game_application.cpp:365]: Game Version: Verne v2.6.0
-[21:04:55][defines.cpp:123]: 1298 defines loaded
-[21:05:43][consolecmdimpl.cpp:2488]: 
+[21:07:41][game_application.cpp:365]: Game Version: Verne v2.6.1
+[21:07:41][defines.cpp:123]: 1309 defines loaded
+[21:08:10][consolecmdimpl.cpp:2492]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -2692,6 +2692,11 @@ federation_cohesion_growth >=< 40 );
 Supported Scopes: federation
 Supported Targets: ???
 
+has_any_federation_law_in_category - Checks if given law category has any active law
+has_any_federation_law_in_category = <federation law category>
+Supported Scopes: federation
+Supported Targets: none
+
 has_federation_law - Checks if given law has been enacted in scoped federation
 has_federation_law = <federation law>
 Supported Scopes: federation
@@ -2808,6 +2813,11 @@ any_enslaved_species = { <triggers> }
 any_enslaved_species = { <count=<num/all>> <triggers> }
 Supported Scopes: planet country
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
+num_ai_empires_setting - Checks the number of AI empires defined in setup
+num_ai_empires_setting >= 1
+Supported Scopes: all
+Supported Targets: none
 
 any_owned_army - Iterate through each army that is owned by the country
 any_owned_army = { <count=<num/all>> <triggers> }
@@ -3060,7 +3070,7 @@ Supported Targets: none
 
 
 =================
-[21:05:43][consolecmdimpl.cpp:2489]: 
+[21:08:10][consolecmdimpl.cpp:2493]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: planet country ship pop fleet
