@@ -1,6 +1,6 @@
-[20:37:53][game_application.cpp:301]: Game Version: Wolfe v2.3.3
-[20:37:53][defines.cpp:123]: 1184 defines loaded
-[20:38:24][consolecmdimpl.cpp:2697]: 
+[20:43:47][game_application.cpp:350]: Game Version: 2.4.0
+[20:43:47][defines.cpp:123]: 1188 defines loaded
+[20:51:39][consolecmdimpl.cpp:2484]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -2780,7 +2780,7 @@ Supported Targets: none
 
 
 =================
-[20:38:24][consolecmdimpl.cpp:2698]: 
+[20:51:39][consolecmdimpl.cpp:2485]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: planet country ship pop fleet
