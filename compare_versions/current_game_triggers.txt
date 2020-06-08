@@ -1,6 +1,6 @@
-[20:54:29][game_application.cpp:350]: Game Version: Lee v2.4.1
-[20:54:29][defines.cpp:123]: 1188 defines loaded
-[20:54:57][consolecmdimpl.cpp:2484]: 
+[20:57:48][game_application.cpp:350]: Game Version: Shelley v2.5.0
+[20:57:48][defines.cpp:123]: 1188 defines loaded
+[20:58:42][consolecmdimpl.cpp:2484]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -1060,6 +1060,11 @@ num_uncleared_blockers - Checks the planet's total amount of uncleared blockers
 num_uncleared_blockers > 3
 Supported Scopes: planet
 Supported Targets: none
+
+local_human_species_class - Checks if local humans founder species is a specific species class
+is_species_class = MAM
+Supported Scopes: all
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
 trade_income - Checks the country's energy credits income from trade for the previous month
 trade_income < 30
@@ -2780,7 +2785,7 @@ Supported Targets: none
 
 
 =================
-[20:54:57][consolecmdimpl.cpp:2485]: 
+[20:58:42][consolecmdimpl.cpp:2485]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: planet country ship pop fleet
