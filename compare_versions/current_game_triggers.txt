@@ -1,6 +1,6 @@
-[21:07:41][game_application.cpp:365]: Game Version: Verne v2.6.1
-[21:07:41][defines.cpp:123]: 1309 defines loaded
-[21:08:10][consolecmdimpl.cpp:2492]: 
+[21:09:43][game_application.cpp:365]: Game Version: Verne v2.6.2
+[21:09:43][defines.cpp:123]: 1309 defines loaded
+[21:10:07][consolecmdimpl.cpp:2492]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -3070,7 +3070,7 @@ Supported Targets: none
 
 
 =================
-[21:08:10][consolecmdimpl.cpp:2493]: 
+[21:10:07][consolecmdimpl.cpp:2493]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: planet country ship pop fleet
