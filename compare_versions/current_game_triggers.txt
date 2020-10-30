@@ -1,6 +1,6 @@
-[21:22:17][game_application.cpp:378]: Game Version: Wells 2.7.2
-[21:22:17][defines.cpp:123]: 1312 defines loaded
-[21:22:58][consolecmdimpl.cpp:2492]: 
+[01:26:15][game_application.cpp:377]: Game Version: Butler v2.8.0
+[01:26:15][defines.cpp:128]: 1315 defines loaded
+[01:28:25][consolecmdimpl.cpp:2557]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -177,9 +177,9 @@ envoy_opinion_change - Checks the country's opinion of the target country has be
 Supported Scopes: country
 Supported Targets: ???
 
-ideal_planet_class - Checks if the country's ideal planet class is a specific class
+ideal_planet_class - Checks if the pop, species or country's ideal planet class is a specific class
 ideal_planet_class = pc_tundra
-Supported Scopes: country
+Supported Scopes: country pop species
 Supported Targets: none
 
 ethos - Checks the average ethics divergence on the planet
@@ -1612,13 +1612,13 @@ is_being_repaired = yes
 Supported Scopes: ship fleet
 Supported Targets: none
 
-any_ambient_object - Checks if any ambient objects in the game meet the specified criteria
-any_ambient_object = { <triggers> }
+any_ambient_object - Iterate through every ambient object in the game
+any_ambient_object = { <count=<num/all>> <triggers> }
 Supported Scopes: all
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
-any_system_ambient_object - Checks if any ambient objects in the system meet the specified criteria
-any_system_ambient_object = { <triggers> }
+any_system_ambient_object - Iterate through every ambient object in the solar system
+any_system_ambient_object = { <count=<num/all>> <triggers> }
 Supported Scopes: galactic_object
 Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
@@ -1626,6 +1626,11 @@ has_ambient_object_flag - Checks if the ambient object has a specific flag
 has_ambient_object_flag = <flag>
 Supported Scopes: ambient_object
 Supported Targets: none
+
+is_ambient_object_type - Checks if the ambient object is a specific type.
+is_ambient_object_type = caravaneer_billboard_1
+Supported Scopes: ambient_object
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
 
 any_bordering_country - Iterate through all bordering countries of a system
 any_bordering_country = { <count=<num/all>> <triggers> }
@@ -2914,6 +2919,21 @@ num_planets_in_system > 5
 Supported Scopes: galactic_object
 Supported Targets: ???
 
+num_assigned_jobs - Checks the number of pops the planet or country has that work a specific job.
+num_assigned_jobs = { job = <key>/unemployed value > 2 }
+Supported Scopes: planet country
+Supported Targets: none
+
+count_ambient_object - Iterate through every ambient object in the game
+count_ambient_object = { <count=<num/all>> <triggers> }
+Supported Scopes: all
+Supported Targets: none
+
+count_system_ambient_object - Iterate through every ambient object in the solar system
+count_system_ambient_object = { <count=<num/all>> <triggers> }
+Supported Scopes: galactic_object
+Supported Targets: none
+
 any_owned_army - Iterate through each army that is owned by the country
 any_owned_army = { <count=<num/all>> <triggers> }
 Supported Scopes: country
@@ -3084,6 +3104,11 @@ count_system_megastructure = { <count=<num/all>> <triggers> }
 Supported Scopes: all
 Supported Targets: none
 
+count_member - Iterate through each member of the federation
+count_member = { <count=<num/all>> <triggers> }
+Supported Scopes: federation
+Supported Targets: none
+
 count_owned_pop - Iterate through all owned pops
 count_owned_pop = { <count=<num/all>> <triggers> }
 Supported Scopes: planet country pop_faction
@@ -3097,6 +3122,31 @@ Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEA
 count_pop_faction - Iterate through all the country's pop factions
 count_pop_faction = { <count=<num/all>> <triggers> }
 Supported Scopes: country
+Supported Targets: none
+
+any_sector - Iterate through all sectors
+any_sector = { <count=<num/all>> <triggers> }
+Supported Scopes: all
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
+count_sector - Iterate through all sectors
+count_sector = { <count=<num/all>> <triggers> }
+Supported Scopes: all
+Supported Targets: none
+
+any_owned_sector - Iterate through every owned sector
+any_owned_sector = { <count=<num/all>> <triggers> }
+Supported Scopes: country
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
+count_owned_sector - Iterate through every owned sector
+count_owned_sector = { <count=<num/all>> <triggers> }
+Supported Scopes: country
+Supported Targets: none
+
+count_owned_ship - Iterate through each ship in the fleet or owned by the country
+count_owned_ship = { <count=<num/all>> <triggers> }
+Supported Scopes: country fleet
 Supported Targets: none
 
 any_owned_pop_species - Iterate through each species of a country's owned pops
@@ -3183,39 +3233,9 @@ count_war = { <count=<num/all>> <triggers> }
 Supported Scopes: country
 Supported Targets: none
 
-any_sector - Iterate through all sectors
-any_sector = { <count=<num/all>> <triggers> }
-Supported Scopes: all
-Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
-
-count_sector - Iterate through all sectors
-count_sector = { <count=<num/all>> <triggers> }
-Supported Scopes: all
-Supported Targets: none
-
-any_owned_sector - Iterate through every owned sector
-any_owned_sector = { <count=<num/all>> <triggers> }
-Supported Scopes: country
-Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
-
-count_owned_sector - Iterate through every owned sector
-count_owned_sector = { <count=<num/all>> <triggers> }
-Supported Scopes: country
-Supported Targets: none
-
-count_member - Iterate through each member of the federation
-count_member = { <count=<num/all>> <triggers> }
-Supported Scopes: federation
-Supported Targets: none
-
-count_owned_ship - Iterate through each ship in the fleet or owned by the country
-count_owned_ship = { <count=<num/all>> <triggers> }
-Supported Scopes: country fleet
-Supported Targets: none
-
 
 =================
-[21:22:58][consolecmdimpl.cpp:2493]: 
+[01:28:25][consolecmdimpl.cpp:2560]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: all
@@ -3459,6 +3479,7 @@ Supported Targets: none
 create_country - Creates a new country
 create_country = {
 	name = <string/random>
+	adjective = <string>
 	type = <key>
 	auto_delete = <bool>
 	name_list = <key>
@@ -3613,6 +3634,16 @@ Supported Targets: none
 set_name - Sets the name of the scoped country/planet/ship/fleet/leader/army/system/pop faction
 set_name = <string>
 Supported Scopes: megastructure planet country ship fleet galactic_object leader army pop_faction federation
+Supported Targets: none
+
+set_adjective - Sets the adjective of the scoped country
+set_adjective = <string>
+Supported Scopes: country
+Supported Targets: none
+
+set_ship_prefix - Sets the ship prefix of the scoped country
+set_ship_prefix = <string>
+Supported Scopes: country
 Supported Targets: none
 
 random_planet - Executes enclosed effects on a random planet that meets the limit criteria
@@ -4191,22 +4222,22 @@ random_owned_fleet = { limit = { <triggers> } <effects> }
 Supported Scopes: country
 Supported Targets: none
 
-random_ambient_object - Executes enclosed effects on a random ambient object in the game that meets the limit criteria
+random_ambient_object - Iterate through every ambient object in the game
 random_ambient_object = { limit = { <triggers> } <effects> }
 Supported Scopes: all
 Supported Targets: none
 
-random_system_ambient_object - Executes enclosed effects on a random ambient object in the scoped system that meets the limit criteria
+random_system_ambient_object - Iterate through every ambient object in the solar system
 random_system_ambient_object = { limit = { <triggers> } <effects> }
 Supported Scopes: galactic_object
 Supported Targets: none
 
-every_ambient_object - Executes enclosed effects on every ambient object in the game that meets the limit criteria
+every_ambient_object - Iterate through every ambient object in the game
 every_ambient_object = { limit = { <triggers> } <effects> }
 Supported Scopes: all
 Supported Targets: none
 
-every_system_ambient_object - Executes enclosed effects on every ambient object in the scoped system that meets the limit criteria
+every_system_ambient_object - Iterate through every ambient object in the solar system
 every_system_ambient_object = { limit = { <triggers> } <effects> }
 Supported Scopes: galactic_object
 Supported Targets: none
@@ -4369,6 +4400,11 @@ Supported Targets: none
 
 force_remove_civic - Removes civic from a government without checking the restrictions
 force_remove_civic = <civic>
+Supported Scopes: country
+Supported Targets: none
+
+set_origin - Sets the country's origin to a certain value. Note: This will not run effects executed during galaxy generation.
+set_origin = <origin>
 Supported Scopes: country
 Supported Targets: none
 
@@ -4854,6 +4890,16 @@ set_starbase_building = { slot = <int> buiding = <starbase_buildin> }
 Supported Scopes: starbase
 Supported Targets: none
 
+remove_starbase_module - Removes a module from a certain slot or all slots on a starbase
+remove_starbase_module = { slot = <int> (optional, default = all) module = <starbase_module> (optional) }
+Supported Scopes: starbase
+Supported Targets: none
+
+remove_starbase_building - Remove a building from a certain slot or all slots on a starbase
+remove_starbase_building = { slot = <int> (optional, default = all) building = <starbase_building> (optional) }
+Supported Scopes: starbase
+Supported Targets: none
+
 add_casus_belli - Adds a Casus Belli to the scoped country against the target country.
 add_casus_belli = { type = cb_subjugation who = <country> days = 10 }
 Supported Scopes: country
@@ -4861,6 +4907,7 @@ Supported Targets: none
 
 get_galaxy_setup_value - Copies a value from the galaxy setup into a variable, optionally scaling it by an int value
 get_galaxy_setup_value = { which = <string> setting = <string> [ scale = <int> ] }
+possible values: num_empires, num_advanced_empires, num_fallen_empires, num_marauder_empires, mid_game_year, end_game_year, victory_year, num_guaranteed_colonies, num_gateways, num_wormhole_pairs, num_hyperlanes, habitable_worlds_scale, primitive_worlds_scale, crisis_strength_scale, tech_costs_scale
 Supported Scopes: all
 Supported Targets: none
 
@@ -5300,6 +5347,16 @@ complete_special_project = { type = <project key> location = <target> }
 Supported Scopes: country
 Supported Targets: none
 
+set_government_cooldown - Locks the country's government for a given period of days, the default cooldown, or unlocks it.
+set_government_cooldown = 500/default/no
+Supported Scopes: country
+Supported Targets: none
+
+change_colony_foundation_date - Changes the colony foundation date (affecting on_colony_X_years pulses) by a specific number of days. Use with care, you can probably break things with this!
+change_colony_foundation_date = <+/- int>
+Supported Scopes: planet
+Supported Targets: THIS ROOT PREV FROM OWNER CONTROLLER CAPITAL SOLAR_SYSTEM LEADER RANDOM FROMFROM PREVPREV PREVPREVPREV PREVPREVPREVPREV
+
 validate_planet_buildings_and_districts - Checks whether the planets and districts on the planet are valid (their potential triggers are fulfilled), removes or replaces them if not.
 validate_planet_buildings_and_districts = yes
 Supported Scopes: planet
@@ -5331,6 +5388,7 @@ or
 change_government = {
 	authority = random / <key>
 	civics = random / { civic = <key> civic = random }
+cooldown = no (default: yes)
 }
 Supported Scopes: country
 Supported Targets: none
@@ -5771,6 +5829,36 @@ every_system_megastructure = { limit = { <triggers> } <effects> }
 Supported Scopes: all
 Supported Targets: none
 
+random_member - Iterate through each member of the federation
+random_member = { limit = { <triggers> } <effects> }
+Supported Scopes: federation
+Supported Targets: none
+
+every_member - Iterate through each member of the federation
+every_member = { limit = { <triggers> } <effects> }
+Supported Scopes: federation
+Supported Targets: none
+
+random_sector - Iterate through all sectors
+random_sector = { limit = { <triggers> } <effects> }
+Supported Scopes: all
+Supported Targets: none
+
+every_sector - Iterate through all sectors
+every_sector = { limit = { <triggers> } <effects> }
+Supported Scopes: all
+Supported Targets: none
+
+random_owned_sector - Iterate through every owned sector
+random_owned_sector = { limit = { <triggers> } <effects> }
+Supported Scopes: country
+Supported Targets: none
+
+every_owned_sector - Iterate through every owned sector
+every_owned_sector = { limit = { <triggers> } <effects> }
+Supported Scopes: country
+Supported Targets: none
+
 random_owned_pop_species - Iterate through each species of a country's owned pops
 random_owned_pop_species = { limit = { <triggers> } <effects> }
 Supported Scopes: country
@@ -5860,36 +5948,6 @@ Supported Targets: none
 every_war - Iterate through all wars the country is engaged in
 every_war = { limit = { <triggers> } <effects> }
 Supported Scopes: country
-Supported Targets: none
-
-random_sector - Iterate through all sectors
-random_sector = { limit = { <triggers> } <effects> }
-Supported Scopes: all
-Supported Targets: none
-
-every_sector - Iterate through all sectors
-every_sector = { limit = { <triggers> } <effects> }
-Supported Scopes: all
-Supported Targets: none
-
-random_owned_sector - Iterate through every owned sector
-random_owned_sector = { limit = { <triggers> } <effects> }
-Supported Scopes: country
-Supported Targets: none
-
-every_owned_sector - Iterate through every owned sector
-every_owned_sector = { limit = { <triggers> } <effects> }
-Supported Scopes: country
-Supported Targets: none
-
-random_member - Iterate through each member of the federation
-random_member = { limit = { <triggers> } <effects> }
-Supported Scopes: federation
-Supported Targets: none
-
-every_member - Iterate through each member of the federation
-every_member = { limit = { <triggers> } <effects> }
-Supported Scopes: federation
 Supported Targets: none
 
 
