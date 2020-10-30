@@ -1,6 +1,6 @@
-[01:26:15][game_application.cpp:377]: Game Version: Butler v2.8.0
-[01:26:15][defines.cpp:128]: 1315 defines loaded
-[01:28:25][consolecmdimpl.cpp:2557]: 
+[03:43:14][game_application.cpp:377]: Game Version: Butler v2.8.0
+[03:43:14][defines.cpp:128]: 1327 defines loaded
+[03:49:02][consolecmdimpl.cpp:2557]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -3235,7 +3235,7 @@ Supported Targets: none
 
 
 =================
-[01:28:25][consolecmdimpl.cpp:2560]: 
+[03:49:02][consolecmdimpl.cpp:2560]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: all

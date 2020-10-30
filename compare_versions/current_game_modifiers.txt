@@ -13,6 +13,7 @@ pop_amenities_usage_no_happiness_base
 pop_amenities_usage_no_happiness_add
 pop_amenities_usage_no_happiness_mult
 pop_decline_speed
+pop_purge_speed
 pop_growth_from_immigration
 pop_growth_speed
 pop_growth_speed_reduction
