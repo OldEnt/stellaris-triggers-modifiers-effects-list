@@ -1,4 +1,4 @@
-[19:56:08][game_application.cpp:1895]: 
+[10:17:43][game_application.cpp:1895]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -112,12 +112,12 @@ last_building_changed - Checks if the last building queued/unqueued/built/demoli
 last_building_changed = building_capitol
 Supported Scopes: planet
 
-empire_size - Checks the empire's size. Identical to empire_spraw trigger.
+empire_size - Checks the empire's size
 empire_size < 20
 Supported Scopes: country
 
-empire_sprawl - Checks the empire's sprawl. Identical to empire_size trigger.
-empire_sprawl < 20
+empire_sprawl - Checks the empire's sprawl
+empire_size < 20
 Supported Scopes: country
 
 empire_sprawl_over_cap - Checks how much the empire sprawl is over its admin capacity
@@ -382,7 +382,7 @@ has_tributary - Checks if the target country is a tributary of the current scope
 has_tributary = <target>
 Supported Scopes: country
 
-upgrade_days_left - Checks how many days an upgrading megastructure will take to complete its upgrade.
+upgrade_days_left - Checks how many days an ugrading megastructure will take to complete its upgrade.
 upgrade_days_left > 360
 Supported Scopes: megastructure
 
@@ -762,7 +762,7 @@ is_capital - Checks if the planet is its owner's capital
 is_capital = yes
 Supported Scopes: planet
 
-is_capital_system - Checks if the solar system has its owner's capital
+is_capital_system - Checks if the solar has its owner's capital
 is_capital_system = yes
 Supported Scopes: galactic_object
 
@@ -935,11 +935,6 @@ Supported Scopes: planet
 has_building - Checks if the planet has any, or a specific, building
 has_building = yes
 has_building = building_capital_3
-Supported Scopes: planet
-
-has_active_building - Checks if the planet has a specific building, and that that building is not disabled or ruined.
-has_building = yes
-has_active_building = building_capital_3
 Supported Scopes: planet
 
 is_controlled_by - Checks if the planet is controlled by the target country
@@ -1769,15 +1764,15 @@ has_same_ethos - Checks if a country has the same ethos (complete set of ethics)
 has_same_ethos = <target>
 Supported Scopes: country pop
 
-is_majority_species - Checks if the specified species is the majority species on the current planet.
-is_majority_species = <species>
-Supported Scopes: planet
+is_majority_species - checks if the current species is the dominant species of the specified country.
+is_majority_species = <country>
+Supported Scopes: planet pop leader species
 
 has_closed_borders - Check if the country has closed its borders to target country
 has_closed_borders = <target>
 Supported Scopes: country
 
-is_difficulty - Checks the game's difficulty level (0 to 5, with 0 as Cadet and 5 as Grand Admiral
+is_difficulty - Checks the game's difficulty level (0 normal, 1 hard, 2 insane)
 is_difficulty = 2
 Supported Scopes: all
 
@@ -2138,10 +2133,6 @@ Supported Scopes: country
 
 using_war_goal - Checks if a war has a specific war goal
 using_war_goal = { type = <war goal> owner = <eventtarget, country> }
-Supported Scopes: war
-
-is_total_war - Checks if a war is a total war
-is_total_war = yes/no
 Supported Scopes: war
 
 has_status - Checks the current status of the scoped ship or fleet.
@@ -2550,11 +2541,11 @@ has_menace_perk = <menace_perk_name>
 Supported Scopes: country
 
 num_organic_pops_per_year - Checks how many organic pops the planet expects to gain in a year on average (through growth and assembly) at the current rate.
-num_organic_pops_per_year > 0.41
+num_organic_pops_grown_per_year > 0.41
 Supported Scopes: planet
 
 num_artificial_pops_per_year - Checks how many artificial pops the planet expects to assemble in a year on average at the current rate.
-num_artificial_pops_per_year > 0.41
+num_artificial_pops_grown_per_year > 0.41
 Supported Scopes: planet
 
 has_spy_power - Compares the spy power of the network
@@ -2641,10 +2632,6 @@ Supported Scopes: country
 is_spynetwork_max_level - Compares spy network max level of the scoped object
 is_spynetwork_max_level >= <int>
 Supported Scopes: spy_network
-
-has_job_category - Checks if the pop is currently working this strata job (worker, specialist, complex_drone, etc.) Returns false if unemployed.
-has_job_category = <key>
-Supported Scopes: pop
 
 count_ambient_object - Iterate through every ambient object in the game - checks whether the enclosed triggers return true for X/all of them
 count_ambient_object = {
@@ -3219,7 +3206,7 @@ Supported Scopes: country
 
 
 =================
-[19:56:08][game_application.cpp:1898]: 
+[10:17:43][game_application.cpp:1898]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: all
@@ -3405,8 +3392,7 @@ create_country - Creates a new country
 create_country = {
 	name = <string/random>
 	adjective = <string>
-	contact_rule = <string>
- type = <key>
+	type = <key>
 	auto_delete = <bool>
 	name_list = <key>
 	ship_prefix = <string>
@@ -5302,12 +5288,6 @@ pass_targeted_resolution - Immediately passes the first found (oldest) proposed/
 pass_targeted_resolution = { resolution = <resolution type> target = <target>
 Supported Scopes: country
 
-set_update_modifiers_batch - Disables modifier system to do full updates between Begin and End.
-On end it will trigger a full update of any dirty modifiers.
-Begin: set_update_modifiers_batch = begin
-End: set_update_modifiers_batch = end
-Supported Scopes: all
-
 validate_planet_buildings_and_districts - Checks whether the planets and districts on the planet are valid (their potential triggers are fulfilled), removes or replaces them if not.
 validate_planet_buildings_and_districts = yes
 Supported Scopes: planet
@@ -5345,7 +5325,6 @@ change_government = {
 	authority = random / <key>
 	civics = random / { civic = <key> civic = random }
 cooldown = no (default: yes)
-remove_invalid_civics = yes (default: no)
 }
 Supported Scopes: country
 
@@ -6365,7 +6344,7 @@ Supported Scopes: country
 
 
 =================
-[19:56:08][game_application.cpp:1910]: 
+[10:17:43][game_application.cpp:1910]: 
 == SCOPE DOCUMENTATION ==
 These work as context switches (links) in triggers and effects (e.g. 'owner = { <triggers/effects> }'), or as targets of triggers and effects (e.g. 'is_owned_by = from'). Dot scoping (e.g. root.owner.capital_scope) is allowed.
 Complete list of scope changes:
@@ -6445,13 +6424,13 @@ space_owner
 ruler
 
 =================
-[19:56:08][game_application.cpp:1925]: 
+[10:17:43][game_application.cpp:1924]: 
 == LOCALIZATION DOCUMENTATION ==
 This is a list of all hardcoded scoped localization commands in the game. It does not include scripted locs (see game/customizable_localization).
 In most cases, it is also possible to get the value of variables: [Scope.my_variable].
 There are also several unscoped commands: GetDate, GetMidGameDate, GetLateGameDate, GetYear, LastKilledCountryName.
 A single opening square bracket '[' will begin a scoped localization statement.
-Two consecutive opening square brackets '[[' will escape it, making a single square bracket show up in text instead, i.e. '[[example]' in loc will display as '[example]' in-game.
+Two consecutive opening square brackets '[[' will escape it, making a single square bracket show up in text instead.
 
 
 --Country--
