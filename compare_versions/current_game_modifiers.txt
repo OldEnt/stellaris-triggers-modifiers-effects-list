@@ -238,6 +238,7 @@ max_trade_piracy_mult
 country_admin_cap_add
 country_admin_cap_mult
 branch_office_value_mult
+branch_office_criminal_syndicate_value_add
 slave_market_cost_mult
 ship_archaeological_site_excavation_speed_mult
 ship_archeaological_site_clues_add

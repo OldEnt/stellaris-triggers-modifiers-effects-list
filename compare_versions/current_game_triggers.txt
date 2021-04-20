@@ -1,4 +1,4 @@
-[19:56:08][game_application.cpp:1895]: 
+[16:42:42][game_application.cpp:1895]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -3219,7 +3219,7 @@ Supported Scopes: country
 
 
 =================
-[19:56:08][game_application.cpp:1898]: 
+[16:42:42][game_application.cpp:1898]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: all
@@ -6365,7 +6365,7 @@ Supported Scopes: country
 
 
 =================
-[19:56:08][game_application.cpp:1910]: 
+[16:42:42][game_application.cpp:1910]: 
 == SCOPE DOCUMENTATION ==
 These work as context switches (links) in triggers and effects (e.g. 'owner = { <triggers/effects> }'), or as targets of triggers and effects (e.g. 'is_owned_by = from'). Dot scoping (e.g. root.owner.capital_scope) is allowed.
 Complete list of scope changes:
@@ -6445,7 +6445,7 @@ space_owner
 ruler
 
 =================
-[19:56:08][game_application.cpp:1925]: 
+[16:42:42][game_application.cpp:1925]: 
 == LOCALIZATION DOCUMENTATION ==
 This is a list of all hardcoded scoped localization commands in the game. It does not include scripted locs (see game/customizable_localization).
 In most cases, it is also possible to get the value of variables: [Scope.my_variable].
