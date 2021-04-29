@@ -1,4 +1,4 @@
-[16:42:42][game_application.cpp:1895]: 
+[22:41:05][game_application.cpp:1895]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -1939,12 +1939,12 @@ has_citizenship_type = { country = <who> type = <type> }
 Supported Scopes: pop leader species
 
 has_population_control - Checks if the pop is prevented from reproducing
-has_population_control = yes
-Supported Scopes: pop
+has_population_control = { value = bool country = scope }
+Supported Scopes: pop leader species
 
 has_migration_control - Checks if the pop is prevented from migrating
-has_migration_control = yes
-Supported Scopes: pop
+has_migration_control = { value = bool country = scope }
+Supported Scopes: pop leader species
 
 species_planet_slave_percentage - Checks if a pop's planet has a specific percentage (0.00-1.00) of the same species enslaved
 species_planet_slave_percentage > 0.40
@@ -2004,7 +2004,7 @@ Supported Scopes: country
 
 has_colonization_control - Checks if the pop is prevented from migrating
 has_colonization_control = { value = bool country = scope }
-Supported Scopes: pop species
+Supported Scopes: pop leader species
 
 has_trade_route - Checks if a system has trade route going through.
 has_trade_route = <yes/no>
@@ -2557,11 +2557,11 @@ num_artificial_pops_per_year - Checks how many artificial pops the planet expect
 num_artificial_pops_per_year > 0.41
 Supported Scopes: planet
 
-has_spy_power - Compares the spy power of the network
+has_spy_power - Compares the infiltration level of the network
 has_spy_power = <num>
 Supported Scopes: spy_network
 
-has_available_spy_power - Compares the available spy power of the network
+has_available_spy_power - Compares the available infiltration level of the network
 has_available_spy_power = <num>
 Supported Scopes: spy_network
 
@@ -3219,13 +3219,13 @@ Supported Scopes: country
 
 
 =================
-[16:42:42][game_application.cpp:1898]: 
+[22:41:05][game_application.cpp:1898]: 
 == EFFECT DOCUMENTATION ==
 tooltip - Just a tooltip
 Supported Scopes: all
 
 win - The scoped country wins the game
-win_game = yes
+win = yes
 Supported Scopes: country
 
 hidden_effect - Prevents enclosed effects from being displayed in tooltip
@@ -4538,7 +4538,7 @@ create_message - Creates a message, can take multiple variables
 create_message = { type = BYPASS_EXPLORED localization = BYPASS_EXPLORED_MESSAGE days = 30 target = root variable = { type = name localization = SYSTEM1 scope = from } variable = { type = name localization = SYSTEM2 scope = fromfrom } }
 Supported Scopes: all
 
-set_halted - Sets the mega structure upgrade to halted status for n days
+set_halted - Sets the mega structure upgrade to halted status for n days. -1 days = indefinitely
 set_halted = nDays
 Supported Scopes: megastructure
 
@@ -5231,6 +5231,10 @@ Supported Scopes: espionage_operation
 join_war_on_side - Joins the war on the specified side.
 join_war_on_side = { war = <target> side = attackers/defenders/<country> }
 Supported Scopes: country
+
+dissolve_federation - Dissolved the current federation
+dissolve_federation = yes
+Supported Scopes: federation
 
 remove_random_starbase_building - Remove a number of random building(s) matching/not matching a type from the starbase
 remove_random_starbase_building = {
@@ -6365,7 +6369,7 @@ Supported Scopes: country
 
 
 =================
-[16:42:42][game_application.cpp:1910]: 
+[22:41:05][game_application.cpp:1910]: 
 == SCOPE DOCUMENTATION ==
 These work as context switches (links) in triggers and effects (e.g. 'owner = { <triggers/effects> }'), or as targets of triggers and effects (e.g. 'is_owned_by = from'). Dot scoping (e.g. root.owner.capital_scope) is allowed.
 Complete list of scope changes:
@@ -6437,6 +6441,8 @@ excavator_fleet
 reverse_first_contact
 spynetwork
 growing_species
+galactic_emperor
+galactic_custodian
 attacker
 defender
 leader
@@ -6445,7 +6451,7 @@ space_owner
 ruler
 
 =================
-[16:42:42][game_application.cpp:1925]: 
+[22:41:05][game_application.cpp:1925]: 
 == LOCALIZATION DOCUMENTATION ==
 This is a list of all hardcoded scoped localization commands in the game. It does not include scripted locs (see game/customizable_localization).
 In most cases, it is also possible to get the value of variables: [Scope.my_variable].
@@ -6684,6 +6690,7 @@ Promotions:
  SpyNetwork
  Target
  Owner
+ Leader
 Properties
  GetName
 
