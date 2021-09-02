@@ -1,7 +1,7 @@
-[20:34:09][game_application.cpp:1925]: 
+[10:47:55][game_application.cpp:1995]: 
 == LOCALIZATION DOCUMENTATION ==
 This is a list of all hardcoded scoped localization commands in the game. It does not include scripted locs (see game/customizable_localization).
-In most cases, it is also possible to get the value of variables: [Scope.my_variable].
+In most cases, it is also possible to get the value of variables with '[Scope.my_variable]' and saved dates with '[Scope.my_date_flag]'.
 There are also several unscoped commands: GetDate, GetMidGameDate, GetLateGameDate, GetYear, LastKilledCountryName.
 A single opening square bracket '[' will begin a scoped localization statement.
 Two consecutive opening square brackets '[[' will escape it, making a single square bracket show up in text instead, i.e. '[[example]' in loc will display as '[example]' in-game.
@@ -44,6 +44,10 @@ Properties
  GetSpeciesEarNamePlural
  GetSpeciesToothName
  GetSpeciesToothNamePlural
+ GetSpeciesFossilName
+ GetSpeciesFossilNamePlural
+ GetSpeciesRemnantName
+ GetSpeciesRemnantNamePlural
  GetRandomSpeciesSound
  GetHomeWorldName
  GetLastLostRelic
@@ -157,6 +161,7 @@ Promotions:
  Owner
  Planet
  Leader
+ Species
 Properties
  GetName
  GetRulerName
@@ -191,6 +196,10 @@ Properties
  GetEarNamePlural
  GetToothName
  GetToothNamePlural
+ GetFossilName
+ GetFossilNamePlural
+ GetRemnantName
+ GetRemnantNamePlural
  GetRandomSpeciesSound
 
 --War--
