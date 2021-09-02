@@ -1,0 +1,70 @@
+
+#################################
+### THE GRAND VARIABLES GUIDE ###
+#################################
+
+# As of version 3.1, you can now do fancy things with variables in script. This is a short write-up of what exactly you can do.
+# (For exact formatting of effects and triggers mentioned, see logs/scripting_documentation)
+
+############################
+# Checking Variable Values #
+############################
+
+# When you are using the value of a variable, you can now use dot scoping. E.g. value = owner.capital_scope.my_variable
+# You can also directly refer to the value of a trigger, e.g. value = trigger:num_pops
+# A combination of the two is also possible: value = owner.capital_scope.trigger:num_pops
+# This works almost everywhere where you are using variables. The exception is in the basic variable effects and triggers where you are specifying which variable to check or change.
+
+#####################
+# Setting Variables #
+#####################
+
+# You can make a variable out of various numbers. The easiest is set_variable and change_variable, but you can also do:
+# - get_galaxy_setup_value: galaxy setup options
+# - export_trigger_value_to_variable: the value of a trigger (e.g. number of pops in the empire). Should work for all triggers that are comparing a single numerical value. For triggers with { }, you can specify parameters = { }
+# - export_modifier_to_variable: the sum of the specific modifier applying to this scope, e.g. the amount of pop_citizen_happiness that a pop is gaining from all sources (including any country and planet modifiers).
+# - export_resource_income_to_variable, export_resource_stockpile_to_variable: country's monthly income or current stockpile of a resource
+
+##########################
+# Manipulating Variables #
+##########################
+
+# Once the variable is set, you can then alter it with standard mathematical operations: change_variable (addition, subtraction), multiply/divide/modulo_variable, etc.
+# Rounding has several options: round_variable will round to the closest integer, floor/ceiling_variable will round it down or up respectively. round_variable_to_closest will let you round to a multiple of the specified value
+# In all of these effects except round/floor/ceiling_variable, you can add/multiply/whatever the variable by another one, with dot scoping and referring to triggers allowed. E.g.:
+# multiply_variable = {
+# 	which = my_var #must be directly referring to a variable
+# 	value = fromfromfrom.owner.trigger:num_pops
+# }
+
+# Once you are done with a variable, you can clear it using clear_variable.
+# Also worth noting: if you need to manipulate a variable in a trigger, you can use the check_variable_arithmetic trigger (which now supports an unlimited number of add/subtract/divide/multiply/modulo operations)
+
+################################
+# Using Variables - The Wheres #
+################################
+
+# We can now use variables in a lot of different places:
+# - Any trigger that is comparing a single number, including ones with { }. E.g. "num_pops > my_variable", "intel = { who = from value < trigger:num_pops }"
+# - Any effect using a single number, including ones with { }. E.g. "add_experience = my_variable".
+# - The count parameter of while loops!
+# - Certain effects let you input variables for various reasons. E.g. multiplier on add_modifier (the modifier's bonuses will be multiplied by the variable), mult on add_resource (multiplies all resources granted by that effect)
+# - Triggered resource tables can take a "multiplier = <variable>":
+# 	resources = {
+# 		category = planet_buildings
+# 		cost = {
+# 			trigger = { <triggers> }
+# 			minerals = 100
+# 		}
+# 		multiplier = my_var/trigger:num_pops
+# 	}
+# - MTTH/AI Chance modifiers:
+# 	ai_chance = {
+# 		factor = 1
+# 		modifier = {
+# 			add/factor = my_var/trigger:num_pops
+# 			is_variable_set = my_var
+# 		}
+# 	}
+# - Ordered script lists: scope to the country with the highest (or 3rd highest, or lowest) value for a variable or trigger.
+# - In locs: if you refer to [This.my_variable], it will print the value of the variable, so long as the variable is set.
