@@ -1,4 +1,4 @@
-[10:47:55][game_application.cpp:1962]: 
+[22:38:17][game_application.cpp:1962]: 
 == TRIGGER DOCUMENTATION ==
 text - For 'desc={trigger={' use. Shows custom text
 text = <text>
@@ -2370,10 +2370,6 @@ Supported Scopes: archaeological_site
 
 is_artificial - Checks if the planet is artificial (as set in planet_classes)
 is_artificial = yes
-Supported Scopes: planet
-
-is_ideal - Checks if the planet is ideal (as set in planet_classes)
-is_ideal = yes
 Supported Scopes: planet
 
 federation_experience - Checks experience of the federation.

@@ -1,4 +1,4 @@
-[10:47:55][game_application.cpp:1977]: 
+[22:38:17][game_application.cpp:1977]: 
 == SCOPE DOCUMENTATION ==
 These work as context switches (links) in triggers and effects (e.g. 'owner = { <triggers/effects> }'), or as targets of triggers and effects (e.g. 'is_owned_by = from'). Dot scoping (e.g. root.owner.capital_scope) is allowed.
 Complete list of scope changes:

@@ -1,0 +1,46 @@
+######################################################
+#
+# Added pre_triggers to planet events
+#
+# pre_triggers are fast triggers that are tested before full triggers
+# they are meant to be fast and quickly exclude planets from events
+# they take the form of yes/no question, if an entry is not included it will be ignored.
+# possible values:
+#	pre_triggers = {
+#		has_owner					# whether the planet has an owner
+#		is_homeworld				# whether the planet is its owner's homeworld
+#		original_owner				# whether the planet still belong to its original owner
+#		is_ai						# whether the planet owner is controlled by the computer (vs controlled by a human)
+#		has_ground_combat			# whether ground combat is going on the planet
+#		is_capital					# whether the planet is the capital world of the empire it belongs too
+#		is_occupied_flag			# whether the planet is occupied
+#	}
+#
+# example:
+#	pre_triggers = {
+#		has_owner = yes
+#		is_homeworld = no
+#		original_owner = yes
+#		is_ai = no
+#		has_ground_combat = no
+#		is_capital = no
+#		is_occupied_flag = no
+#	}
+#
+######################################################
+
+# pre_triggers also work in pop, system, starbase and leader events:
+# pop:
+#		See common/pop_jobs/000_pretriggers.txt
+# system:
+#		has_owner (whether the system has an owned starbase)
+#		is_capital (whether the system has its owner's capital in it)
+#		is_occupied_flag (whether the system is fully occupied by someone other than its owner, including all of its planets)
+#
+# starbase:
+#		has_owner (whether it has an owner)
+#		is_occupied_flag (whether the controller is not the owner)
+#
+# leader:
+#		has_owner
+#		is_idle (whether the leader is assigned to a task)

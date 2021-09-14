@@ -1,4 +1,4 @@
-[10:47:55][modifier.cpp:1089]: 
+[22:38:17][modifier.cpp:1089]: 
  == MODIFIER DOCUMENTATION ==
 Note on Modifier Categories:
 -- These are used internally as a tag to suggest where they are intended to be used, but exact behavior depends upon individual implementation.
@@ -3836,18 +3836,6 @@ Printing Modifier Definitions:
 - shipsize_space_dragon_blue_evasion_mult, Category: Ships
 - shipsize_space_dragon_blue_disengage_chance_mult, Category: Ships
 - shipsize_space_dragon_blue_tracking_mult, Category: Ships
-- shipsize_space_dragon_purple_build_speed_mult, Category: Planets, Starbases
-- shipsize_space_dragon_purple_hull_mult, Category: Ships
-- shipsize_space_dragon_purple_hull_add, Category: Ships
-- shipsize_space_dragon_purple_evasion_mult, Category: Ships
-- shipsize_space_dragon_purple_disengage_chance_mult, Category: Ships
-- shipsize_space_dragon_purple_tracking_mult, Category: Ships
-- shipsize_space_dragon_purple_baby_build_speed_mult, Category: Planets, Starbases
-- shipsize_space_dragon_purple_baby_hull_mult, Category: Ships
-- shipsize_space_dragon_purple_baby_hull_add, Category: Ships
-- shipsize_space_dragon_purple_baby_evasion_mult, Category: Ships
-- shipsize_space_dragon_purple_baby_disengage_chance_mult, Category: Ships
-- shipsize_space_dragon_purple_baby_tracking_mult, Category: Ships
 - shipsize_psionic_avatar_build_speed_mult, Category: Planets, Starbases
 - shipsize_psionic_avatar_hull_mult, Category: Ships
 - shipsize_psionic_avatar_hull_add, Category: Ships
